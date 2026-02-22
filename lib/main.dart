@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/Navigator_page.dart';
+import 'package:todo_list/Pages/Navigator_page.dart';
 
-import 'Home_page.dart';
 
 void main() {
   runApp(MyApp());

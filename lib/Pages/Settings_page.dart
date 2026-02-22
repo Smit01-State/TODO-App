@@ -1,20 +1,22 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SearchPage extends StatelessWidget{
+class SettingsPage extends StatelessWidget{
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
 
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         foregroundColor: Theme.of(context).colorScheme.onSecondary,
-        title: Text(" TODO Search "),
+        title: Text("TODO Setting"),
       ),
       body: Center(
-          child: Text("Search Page",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+          child: Text("Setting Page",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
       ),
     );
   }

@@ -1,13 +1,14 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_list/History_page.dart';
-import 'package:todo_list/Home_page.dart';
-import 'package:todo_list/Search_page.dart';
-import 'package:todo_list/Settings_page.dart';
+import 'package:todo_list/Pages/History_page.dart';
+import 'package:todo_list/Pages/Home_page.dart';
+import 'package:todo_list/Pages/Search_page.dart';
+import 'package:todo_list/Pages/Settings_page.dart';
 
 class NavigatorPage extends StatefulWidget{
+  const NavigatorPage({super.key});
+
 
   @override
   State<NavigatorPage> createState() => _NavigatorPageState();
