@@ -26,6 +26,7 @@ class _TodoaddcontentState extends State<Todoaddcontent> {
 
   @override
   void dispose() {
+
     _todoDateControler.dispose();
     _todoDetailControler.dispose();
     _todoTitleControler.dispose();
@@ -97,8 +98,8 @@ class _TodoaddcontentState extends State<Todoaddcontent> {
             DueDate: SelectedDate
           );
           widget.onAdd(task);
-          Navigator.pop(context);
 
+          Navigator.pop(context);
         }, child: Text("Add")), // adding a action to add this content to list
 
       ],

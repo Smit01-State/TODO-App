@@ -18,7 +18,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-   List<Task> tasks  = [];
+   List<Task> tasks  = [ ];
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Center(
         child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
       )
-          : Listbuilder(tasks: tasks),
+          : Listbuilder(tasks: tasks,),
 
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -49,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog(
       barrierDismissible: false,
         context: context,
-        builder: (context)=>Todoaddcontent(
+        builder: (context) => Todoaddcontent(
           onAdd: (task){
             setState(() {
               tasks.add(task);

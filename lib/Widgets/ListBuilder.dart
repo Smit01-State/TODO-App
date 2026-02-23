@@ -16,6 +16,7 @@ class Listbuilder extends StatefulWidget{
       required this.tasks,
 
 
+
   });
 
   @override
@@ -29,14 +30,13 @@ class _ListbuilderState extends State<Listbuilder> {
     return ListView.separated(
 
       itemCount: widget.tasks.length,
-
-
-        itemBuilder: (context, index ) {
+      itemBuilder: (context, index ) {
 
          final task = widget.tasks[index];
 
           return ListTile(
             leading: Checkbox.adaptive(
+
                 value:task.isCompleted,
                 onChanged: (value) {
                   setState(() {
@@ -45,23 +45,30 @@ class _ListbuilderState extends State<Listbuilder> {
                     }
                     else{
                       task.isCompleted = false;
+
                     }
+
                   });
 
                 }),
             title: Text(task.title!),
             subtitle: Text("${(task.DueDate)!.day}/${(task.DueDate)!.month}/${(task.DueDate)!.year}"),
+            trailing: IconButton(onPressed: (){
+                 setState(() {
+                   widget.tasks.removeAt(index);
+                 });
+            }, icon: Icon(Icons.delete))
 
           );
 
 
-        }, separatorBuilder: (BuildContext context, int index) {
-              return const Divider(
-                thickness: 1,
-                height: 1,
-              );
-
-          },
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return const Divider(
+            thickness: 1,
+            height: 1,
+          );
+        },
 
     );
   }

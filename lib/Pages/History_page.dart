@@ -2,8 +2,14 @@
 
 import 'package:flutter/material.dart';
 
+import '../Models/task.dart';
+import '../Widgets/ListBuilder.dart';
+
 class HistoryPage extends StatelessWidget{
-  const HistoryPage({super.key});
+   HistoryPage({super.key});
+
+  List<Task> tasks = [];
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +21,11 @@ class HistoryPage extends StatelessWidget{
         foregroundColor: Theme.of(context).colorScheme.onSecondary,
         title: Text("TODO history"),
       ),
-      body: Center(
-          child: Text("History Page",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
-      ),
+      body: tasks.isEmpty?
+      Center(
+        child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+      )
+          : Listbuilder(tasks: tasks,  ),
     );
   }
 }
