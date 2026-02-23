@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
    MyApp({super.key});
 
   late final _lightColorScheme = ColorScheme.fromSeed(
-      seedColor: Colors.green,
+      seedColor: Colors.blue,
     brightness: Brightness.light
   );
   final _DarkColorScheme = ColorScheme.fromSeed(
-      seedColor: Colors.green,
+      seedColor: Colors.blue,
       brightness: Brightness.dark
   );
 

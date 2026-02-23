@@ -6,6 +6,8 @@ import 'package:todo_list/Pages/Home_page.dart';
 import 'package:todo_list/Pages/Search_page.dart';
 import 'package:todo_list/Pages/Settings_page.dart';
 
+import '../Models/task.dart';
+
 class NavigatorPage extends StatefulWidget{
   const NavigatorPage({super.key});
 
@@ -15,12 +17,34 @@ class NavigatorPage extends StatefulWidget{
 }
 
 class _NavigatorPageState extends State<NavigatorPage> {
+
+
+  List<Task> tasks  = [];
+
+  void AddTask(Task task){
+    setState(() {
+      tasks.add(task);
+    });
+  }
+
+  void toggleTask(int index){
+    setState(() {
+      tasks[index].isCompleted = tasks[index].isCompleted;
+    });
+  }
+
     int _currentIndex = 0;
  //
-  final List<Widget> _Pages = [
-    MyHomePage(),
+  late final List<Widget> _Pages = [
+    MyHomePage(
+      tasks: tasks,
+      onAdd: AddTask,
+      onToggle: toggleTask,
+    ),
     SearchPage(),
-    HistoryPage(),
+    HistoryPage(
+      tasks: tasks,
+      onToggal:toggleTask,),
     SettingsPage(),
   ];
 

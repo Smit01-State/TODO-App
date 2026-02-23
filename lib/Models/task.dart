@@ -5,7 +5,7 @@ class Task {  // blueprint use this to create a objects
   String? title;
   String? detail;
   DateTime? DueDate;
-  bool? isCompleted;
+  bool isCompleted;
 
 
   Task({
@@ -13,7 +13,7 @@ class Task {  // blueprint use this to create a objects
     required this.title,
     this.detail = '',
     this.DueDate,
-    this.isCompleted = false
+    this.isCompleted = false,
   });
 
 

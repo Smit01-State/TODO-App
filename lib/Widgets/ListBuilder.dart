@@ -7,15 +7,16 @@ import 'package:todo_list/Models/task.dart';
 
 class Listbuilder extends StatefulWidget{
 
+
   final List<Task> tasks;
+  final Function(int) onToggle;
 
 
   Listbuilder({
 
       super.key,
       required this.tasks,
-
-
+     required this.onToggle,
 
   });
 
@@ -40,18 +41,16 @@ class _ListbuilderState extends State<Listbuilder> {
                 value:task.isCompleted,
                 onChanged: (value) {
                   setState(() {
-                    if(task.isCompleted == false){
-                      task.isCompleted = true;
-                    }
-                    else{
-                      task.isCompleted = false;
-
-                    }
-
+                    task.isCompleted = !task.isCompleted;
                   });
 
                 }),
-            title: Text(task.title!),
+            title: Text(task.title!,style: TextStyle(
+                color: task.isCompleted ? Colors.grey
+                    : Theme.of(context).colorScheme.onSurface,
+              decoration: task.isCompleted?TextDecoration.lineThrough:null,
+            ),
+            ),
             subtitle: Text("${(task.DueDate)!.day}/${(task.DueDate)!.month}/${(task.DueDate)!.year}"),
             trailing: IconButton(onPressed: (){
                  setState(() {
@@ -61,7 +60,7 @@ class _ListbuilderState extends State<Listbuilder> {
 
           );
 
-
+// adjust
         },
         separatorBuilder: (BuildContext context, int index) {
           return const Divider(

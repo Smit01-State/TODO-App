@@ -6,10 +6,18 @@ import '../Widgets/ListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
 
+   MyHomePage({
+     super.key,
+     required this.tasks,
+     required this.onToggle,
+     required this.onAdd
+  });
 
+ List<Task> tasks;
 
+final void Function(Task) onAdd;
+final void Function(int)  onToggle;
 
 
   @override
@@ -17,9 +25,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-   List<Task> tasks  = [ ];
-
 
 
 
@@ -34,11 +39,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("TODO List"),
       ),
 
-      body: tasks.isEmpty?
+      body: widget.tasks.isEmpty?
       Center(
         child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
       )
-          : Listbuilder(tasks: tasks,),
+          : Listbuilder(tasks: widget.tasks,onToggle: widget.onToggle,),
 
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -54,10 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         builder: (context) => Todoaddcontent(
           onAdd: (task){
+
             setState(() {
-              tasks.add(task);
+              widget.onAdd(task);
             });
-          },
+
+          }
         )
     );
   } // builder
