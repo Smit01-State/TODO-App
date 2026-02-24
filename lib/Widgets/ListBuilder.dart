@@ -41,8 +41,8 @@ class _ListbuilderState extends State<Listbuilder> {
                 value:task.isCompleted,
                 onChanged: (value) {
                   setState(() {
-                    task.isCompleted = !task.isCompleted;
-                  });
+                  widget.onToggle(index);
+                });
 
                 }),
             title: Text(task.title!,style: TextStyle(

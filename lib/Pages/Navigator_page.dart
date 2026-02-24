@@ -9,14 +9,15 @@ import 'package:todo_list/Pages/Settings_page.dart';
 import '../Models/task.dart';
 
 class NavigatorPage extends StatefulWidget{
-  const NavigatorPage({super.key});
-
+   NavigatorPage({super.key,});
 
   @override
   State<NavigatorPage> createState() => _NavigatorPageState();
 }
 
 class _NavigatorPageState extends State<NavigatorPage> {
+
+
 
 
   List<Task> tasks  = [];
@@ -29,7 +30,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
 
   void toggleTask(int index){
     setState(() {
-      tasks[index].isCompleted = tasks[index].isCompleted;
+      tasks[index].isCompleted = !tasks[index].isCompleted;
     });
   }
 
@@ -45,7 +46,8 @@ class _NavigatorPageState extends State<NavigatorPage> {
     HistoryPage(
       tasks: tasks,
       onToggal:toggleTask,),
-    SettingsPage(),
+    SettingsPage(
+    ),
   ];
 
   @override

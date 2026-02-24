@@ -6,15 +6,32 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
    MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  /*late Color Facolor = Colors.blue;
+
+  void colorChange(Color color){
+    setState(() {
+      this.Facolor = color;
+      print("Color changed to $color");
+    });
+
+  }*/
+
   late final _lightColorScheme = ColorScheme.fromSeed(
-      seedColor: Colors.blue,
+      seedColor: Colors.brown,
     brightness: Brightness.light
   );
-  final _DarkColorScheme = ColorScheme.fromSeed(
-      seedColor: Colors.blue,
+
+  late final _DarkColorScheme = ColorScheme.fromSeed(
+      seedColor: Colors.brown,
       brightness: Brightness.dark
   );
 
@@ -29,8 +46,9 @@ class MyApp extends StatelessWidget {
 
       title: 'Flutter Demo',
 
-      theme: ThemeData(colorScheme: _lightColorScheme),
-      darkTheme: ThemeData(colorScheme: _DarkColorScheme),
+      theme: ThemeData(colorScheme: _lightColorScheme,),
+      darkTheme: ThemeData(colorScheme: _DarkColorScheme, ),
+
 
       home:  NavigatorPage(),
 
