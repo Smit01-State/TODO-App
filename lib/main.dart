@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/Pages/Navigator_page.dart';
+import 'package:todo_list/Provider/Task_provider.dart';
 import 'package:todo_list/Provider/ThemeMode_provider.dart';
 
 
@@ -58,7 +59,10 @@ class _MyAppState extends State<MyApp> {
       themeMode: context.watch<ThememodeProvider>().modeGetter(),
 
 
-      home: NavigatorPage(),
+      home: ChangeNotifierProvider(
+        create: (context)=>TaskProvider(),
+          child: NavigatorPage()
+      ),
 
     );
   }

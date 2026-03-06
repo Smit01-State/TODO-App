@@ -1,23 +1,16 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list/Provider/Task_provider.dart';
 import '../Models/task.dart';
 import '../Widgets/ListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 
 class MyHomePage extends StatefulWidget {
 
-   MyHomePage({
-     super.key,
-     required this.tasks,
-     required this.onToggle,
-     required this.onAdd
-  });
+   MyHomePage({super.key,});
 
- List<Task> tasks;
-
-final void Function(Task) onAdd;
-final void Function(int)  onToggle;
 
 
   @override
@@ -39,11 +32,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("TODO List"),
       ),
 
-      body: widget.tasks.isEmpty?
+      body: context.watch<TaskProvider>().TaskGetter().isEmpty?
       Center(
         child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
       )
-          : Listbuilder(tasks: widget.tasks,onToggle: widget.onToggle,),
+          : Listbuilder(),
 
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -57,15 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog(
       barrierDismissible: false,
         context: context,
-        builder: (context) => Todoaddcontent(
-          onAdd: (task){
-
-            setState(() {
-              widget.onAdd(task);
-            });
-
-          }
-        )
+        builder: (context) => Todoaddcontent()
     );
   } // builder
 }

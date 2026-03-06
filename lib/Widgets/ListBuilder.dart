@@ -3,20 +3,18 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/Models/task.dart';
+import 'package:todo_list/Provider/Task_provider.dart';
 
 class Listbuilder extends StatefulWidget{
 
-
-  final List<Task> tasks;
-  final Function(int) onToggle;
 
 
   Listbuilder({
 
       super.key,
-      required this.tasks,
-     required this.onToggle,
+
 
   });
 
@@ -30,20 +28,16 @@ class _ListbuilderState extends State<Listbuilder> {
 
     return ListView.separated(
 
-      itemCount: widget.tasks.length,
+      itemCount: context.watch<TaskProvider>().TaskGetter().length,
       itemBuilder: (context, index ) {
 
-         final task = widget.tasks[index];
+         final task = context.watch<TaskProvider>().TaskGetter()[index];
 
           return ListTile(
             leading: Checkbox.adaptive(
-
                 value:task.isCompleted,
                 onChanged: (value) {
-                  setState(() {
-                  widget.onToggle(index);
-                });
-
+                  context.read<TaskProvider>().toggleTask(index);
                 }),
             title: Text(task.title!,style: TextStyle(
                 color: task.isCompleted ? Colors.grey
@@ -52,17 +46,12 @@ class _ListbuilderState extends State<Listbuilder> {
             ),
             ),
             subtitle: Text("${(task.DueDate)!.day}/${(task.DueDate)!.month}/${(task.DueDate)!.year}"),
-            trailing: IconButton(onPressed: (){
-                 setState(() {
-                   widget.tasks.removeAt(index);
-                 });
-            }, icon: Icon(Icons.delete))
 
           );
 
 // adjust
         },
-        separatorBuilder: (BuildContext context, int index) {
+        separatorBuilder: ( context,  index) {
           return const Divider(
             thickness: 1,
             height: 1,

@@ -2,13 +2,16 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/Models/task.dart';
+
+import '../Provider/Task_provider.dart';
 
 class Todoaddcontent extends StatefulWidget{
 
-  final void Function(Task) onAdd; // a variable that stores functions and accept the Task type
 
-  Todoaddcontent({super.key, required this.onAdd});
+
+  Todoaddcontent({super.key, });
 
   @override
   State<Todoaddcontent> createState() => _TodoaddcontentState();
@@ -87,7 +90,6 @@ class _TodoaddcontentState extends State<Todoaddcontent> {
         ),
       ),
       actions: [
-
         TextButton(onPressed: (){
           Navigator.pop(context);
         }, child: Text("Discard")),
@@ -97,8 +99,7 @@ class _TodoaddcontentState extends State<Todoaddcontent> {
             detail: _todoDateControler.text.toString(),
             DueDate: SelectedDate
           );
-          widget.onAdd(task);
-
+          context.read<TaskProvider>().AddTask(task);
           Navigator.pop(context);
         }, child: Text("Add")), // adding a action to add this content to list
 

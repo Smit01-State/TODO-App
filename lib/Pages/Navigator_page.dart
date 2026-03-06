@@ -22,34 +22,12 @@ class _NavigatorPageState extends State<NavigatorPage> {
 
 
 
-
-
-  List<Task> tasks  = [];
-
-  void AddTask(Task task){
-    setState(() {
-      tasks.add(task);
-    });
-  }
-
-  void toggleTask(int index){
-    setState(() {
-      tasks[index].isCompleted = !tasks[index].isCompleted;
-    });
-  }
-
     int _currentIndex = 0;
  //
   late final List<Widget> _Pages = [
-    MyHomePage(
-      tasks: tasks,
-      onAdd: AddTask,
-      onToggle: toggleTask,
-    ),
+    MyHomePage(),
     SearchPage(),
-    HistoryPage(
-      tasks: tasks,
-      onToggal:toggleTask,),
+    HistoryPage(),
     SettingsPage(),
   ];
 

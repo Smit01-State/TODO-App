@@ -1,18 +1,14 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../Models/task.dart';
+import '../Provider/Task_provider.dart';
 import '../Widgets/ListBuilder.dart';
 
 class HistoryPage extends StatefulWidget{
-   HistoryPage({super.key,required this.tasks,required this.onToggal});
-
-
-  final List<Task> tasks;
-
-  final Function(int) onToggal;
-
+   HistoryPage({super.key});
 
 
   @override
@@ -25,7 +21,7 @@ class _HistoryPageState extends State<HistoryPage> {
 
 
 
-    final completedTask = widget.tasks.where((task)=>task.isCompleted).toList();
+    final completedTask = context.watch<TaskProvider>().TaskGetter().where((task)=>task.isCompleted).toList();
 
     return Scaffold(
 
@@ -38,7 +34,7 @@ class _HistoryPageState extends State<HistoryPage> {
       Center(
         child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
       )
-          : Listbuilder(tasks: completedTask,onToggle: widget.onToggal,),
+          : Listbuilder(),
     );
   }
 }
