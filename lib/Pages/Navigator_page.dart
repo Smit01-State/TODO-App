@@ -9,13 +9,17 @@ import 'package:todo_list/Pages/Settings_page.dart';
 import '../Models/task.dart';
 
 class NavigatorPage extends StatefulWidget{
-   NavigatorPage({super.key,});
+
+   NavigatorPage({super.key});
+
 
   @override
   State<NavigatorPage> createState() => _NavigatorPageState();
 }
 
 class _NavigatorPageState extends State<NavigatorPage> {
+
+
 
 
 
@@ -46,8 +50,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
     HistoryPage(
       tasks: tasks,
       onToggal:toggleTask,),
-    SettingsPage(
-    ),
+    SettingsPage(),
   ];
 
   @override

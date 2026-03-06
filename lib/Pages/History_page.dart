@@ -14,6 +14,7 @@ class HistoryPage extends StatefulWidget{
   final Function(int) onToggal;
 
 
+
   @override
   State<HistoryPage> createState() => _HistoryPageState();
 }

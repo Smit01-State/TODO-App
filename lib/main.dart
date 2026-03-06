@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/Pages/Navigator_page.dart';
+import 'package:todo_list/Provider/ThemeMode_provider.dart';
 
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context)=> ThememodeProvider(),
+      child: MyApp()
+  )
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -27,13 +33,14 @@ class _MyAppState extends State<MyApp> {
 
   late final _lightColorScheme = ColorScheme.fromSeed(
       seedColor: Colors.brown,
-    brightness: Brightness.light
+      brightness: Brightness.light
   );
 
   late final _DarkColorScheme = ColorScheme.fromSeed(
       seedColor: Colors.brown,
       brightness: Brightness.dark
   );
+
 
   // This widget is the root of your application.
   @override
@@ -48,9 +55,10 @@ class _MyAppState extends State<MyApp> {
 
       theme: ThemeData(colorScheme: _lightColorScheme,),
       darkTheme: ThemeData(colorScheme: _DarkColorScheme, ),
+      themeMode: context.watch<ThememodeProvider>().modeGetter(),
 
 
-      home:  NavigatorPage(),
+      home: NavigatorPage(),
 
     );
   }

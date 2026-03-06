@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list/Provider/ThemeMode_provider.dart';
 
 class SettingsPage extends StatefulWidget{
-   SettingsPage({super.key,});
+   SettingsPage({super.key});
 
    late Color Facolor = Colors.blue;
 
@@ -20,13 +22,25 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
 
       appBar: AppBar(
-       backgroundColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         foregroundColor: Theme.of(context).colorScheme.onSecondary,
         title: Text("TODO Setting"),
       ),
       body: Center(
           child: Column(
             children: [
+              Consumer(
+                builder: (context, value, child) {
+
+                  return IconButton(
+                      onPressed: (){
+                      Provider.of<ThememodeProvider>(context,listen: false).ThemeModeToggale();
+                      }, icon: Icon(context.read<ThememodeProvider>().modeGetter()==ThemeMode.light?Icons.light_mode:Icons.dark_mode)
+                  );
+
+                },
+
+              ),
               IconButton(
                 color: widget.Facolor,
                   onPressed: (){
