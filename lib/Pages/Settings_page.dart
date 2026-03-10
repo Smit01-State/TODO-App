@@ -34,8 +34,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
                   return IconButton(
                       onPressed: (){
-                      Provider.of<ThememodeProvider>(context,listen: false).ThemeModeToggale();
-                      }, icon: Icon(context.read<ThememodeProvider>().modeGetter()==ThemeMode.light?Icons.light_mode:Icons.dark_mode)
+                        context.read<ThememodeProvider>().ThemeModeToggale();
+                     // Provider.of<ThememodeProvider>(context,listen: false).ThemeModeToggale();
+                      }, icon: Icon(context.watch<ThememodeProvider>().modeGetter()==ThemeMode.light?Icons.dark_mode:Icons.light_mode)
                   );
 
                 },
