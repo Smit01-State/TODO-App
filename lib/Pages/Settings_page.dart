@@ -3,12 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_list/Provider/ThemeMode_provider.dart';
+
+import '../ViewModel/ThemeMode_provider.dart';
+
 
 class SettingsPage extends StatefulWidget{
    SettingsPage({super.key});
 
-   late Color Facolor = Colors.blue;
+   //late Color Facolor = Colors.blue;
 
 
   @override
@@ -43,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
               ),
               IconButton(
-                color: widget.Facolor,
+                color: context.watch<ThememodeProvider>().ColorGettter(),
                   onPressed: (){
                     ShowcolorPaled(context);
                   },
@@ -63,7 +65,7 @@ class _SettingsPageState extends State<SettingsPage> {
       actions: [
         TextButton(onPressed: (){}, child: Text("discard")), //discard
         FilledButton(onPressed: (){
-          print("${widget.Facolor}");
+          print("${Provider.of<ThememodeProvider>(context,listen: false).ColorGettter()}");
           Navigator.pop(context);
         }, child: Text("select"))
       ],
@@ -72,12 +74,14 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget? PikerColor()=> ColorPicker(
-        pickerColor: widget.Facolor,
-        onColorChanged: (color){ setState(() {
+        pickerColor: context.read<ThememodeProvider>().ColorGettter(),
+        onColorChanged: (color){
+          context.read<ThememodeProvider>().ColorChange(color);
+          /*setState(() {
             this.widget.Facolor = color;
-          });
-
+          });*/
         }
+
         );
 
 }

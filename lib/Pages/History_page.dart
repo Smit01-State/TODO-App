@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Models/task.dart';
-import '../Provider/Task_provider.dart';
+
+import '../ViewModel/Task_provider.dart';
 import '../Widgets/ListBuilder.dart';
 
 class HistoryPage extends StatefulWidget{

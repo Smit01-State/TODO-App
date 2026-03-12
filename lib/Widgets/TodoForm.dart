@@ -4,8 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/Models/task.dart';
-
-import '../Provider/Task_provider.dart';
+import '../ViewModel/Task_provider.dart';
 
 class Todoaddcontent extends StatefulWidget{
 

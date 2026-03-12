@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_list/Provider/Task_provider.dart';
+
 import '../Models/task.dart';
+import '../ViewModel/Task_provider.dart';
 import '../Widgets/ListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 

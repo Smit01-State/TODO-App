@@ -19,10 +19,15 @@ class NavigatorPage extends StatefulWidget{
 
 class _NavigatorPageState extends State<NavigatorPage> {
 
+     PageController _pageController = PageController();
 
-
+     void onTapPage(int index){
+       _pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.ease);
+     }
 
     int _currentIndex = 0;
+
+
  //
   late final List<Widget> _Pages = [
     MyHomePage(),
@@ -35,17 +40,27 @@ class _NavigatorPageState extends State<NavigatorPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
+
+      body: PageView(
+        controller: _pageController,
         children: _Pages,
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (value){
-          setState((){
-            _currentIndex = value;
+        onPageChanged: (index){
+          setState(() {
+            _currentIndex = index;
           });
         },
+
+      ),
+
+      /*IndexedStack(
+            index: _currentIndex,
+            children: _Pages,
+      ),*/
+
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: onTapPage,
+
           destinations: [
                 NavigationDestination(icon: Icon(Icons.home_outlined), label: "Home",selectedIcon: Icon(Icons.home),),
                 NavigationDestination(icon: Icon(Icons.search_rounded), label: "Search",selectedIcon: Icon(Icons.search_rounded),),
