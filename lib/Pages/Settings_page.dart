@@ -38,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       onPressed: (){
                         context.read<ThememodeProvider>().ThemeModeToggale();
                      // Provider.of<ThememodeProvider>(context,listen: false).ThemeModeToggale();
-                      }, icon: Icon(context.watch<ThememodeProvider>().modeGetter()==ThemeMode.light?Icons.dark_mode:Icons.light_mode)
+                      }, icon: Icon(context.watch<ThememodeProvider>().getMode ==ThemeMode.light?Icons.dark_mode:Icons.light_mode)
                   );
 
                 },

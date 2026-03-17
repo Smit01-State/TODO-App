@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_list/Models/const/ConstatSP.dart';
 
 
 import 'Pages/Navigator_page.dart';
@@ -8,16 +10,23 @@ import 'ViewModel/ThemeMode_provider.dart';
 
 
 
-void main() {
+void main() async {
+ WidgetsFlutterBinding.ensureInitialized();
+  final shrf = await SharedPreferences.getInstance();
+  final  isdark = shrf.getBool(Constatsp.THEMEMODE_KEY) ?? false;
+
+
   runApp(ChangeNotifierProvider(
-    create: (context)=> ThememodeProvider(),
-      child: MyApp()
-  )
+          create: (context)=> ThememodeProvider(isdark),
+          child: MyApp()
+        )
   );
 }
 
 class MyApp extends StatefulWidget {
-   MyApp({super.key});
+   MyApp({super.key,});
+
+
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -59,8 +68,7 @@ class _MyAppState extends State<MyApp> {
 
       theme: ThemeData(colorScheme: _lightColorScheme,),
       darkTheme: ThemeData(colorScheme: _DarkColorScheme, ),
-      themeMode: context.watch<ThememodeProvider>().modeGetter(),
-
+      themeMode: context.watch<ThememodeProvider>().getMode,
 
       home: ChangeNotifierProvider(
         create: (context)=>TaskProvider(),
