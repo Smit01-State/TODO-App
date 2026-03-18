@@ -18,22 +18,29 @@ class HistoryListBuilder extends StatefulWidget{
       itemCount: context.watch<TaskProvider>().HistoryTasks.length,
 
       itemBuilder: (context, index ) {
-        final task = context.watch<TaskProvider>().HistoryTasks[index];
+        final Htask = context.watch<TaskProvider>().HistoryTasks[index];
 
         return ListTile(
-          leading: Checkbox.adaptive(
-              value:task.isCompleted,
-              onChanged: (value) {
-                context.read<TaskProvider>().toggleTask(index);
-              }),
-          title: Text(task.title!,style: TextStyle(
-            color: task.isCompleted ? Colors.grey
+          leading: IconButton(
+              onPressed: () {
+                context.read<TaskProvider>().HistorytoggleTask(index);
+                if(!Htask.isCompleted){
+                  context.read<TaskProvider>().AddTask(Htask);
+                  context.read<TaskProvider>().RemoveHistoryTask(index);
+                }
+              },icon: Icon(Icons.settings_backup_restore),),
+          title: Text(Htask.title!,style: TextStyle(
+            color: Htask.isCompleted ? Colors.grey
                 : Theme.of(context).colorScheme.onSurface,
-            decoration: task.isCompleted?TextDecoration.lineThrough:null,
+            decoration: Htask.isCompleted?TextDecoration.lineThrough:null,
           ),
           ),
-          subtitle: Text("${(task.DueDate)!.day}/${(task.DueDate)!.month}/${(task.DueDate)!.year}"),
-          trailing: IconButton(onPressed: (){}, icon: Icon(Icons.delete_forever)),
+          subtitle: Text("${(Htask.DueDate)!.day}/${(Htask.DueDate)!.month}/${(Htask.DueDate)!.year}"),
+          trailing: IconButton(onPressed: (){
+
+            context.read<TaskProvider>().RemoveHistoryTask(index);
+
+          }, icon: Icon(Icons.delete_forever)),
         );
 
 // adjust

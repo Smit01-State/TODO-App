@@ -15,17 +15,32 @@ class TaskProvider extends ChangeNotifier{
   List<Task> get HistoryTasks=> _Historytasks;
 
 /// methods
+  /// for _task methods
   void AddTask(Task task){
       _tasks.add(task);
       notifyListeners();
   }
+  void toggleTask(int index){
+    _tasks[index].isCompleted = !_tasks[index].isCompleted;
+    notifyListeners();
+  }
+  void RemoveTask(int index){
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
+  /// for _Historytasks methods
   void AddHistoryTask(Task task){
     _Historytasks.add(task);
     notifyListeners();
   }
-  void toggleTask(int index){
-      _tasks[index].isCompleted = !_tasks[index].isCompleted;
-      notifyListeners();
+  void RemoveHistoryTask(int index){
+    _Historytasks.removeAt(index);
+    notifyListeners();
   }
+  void HistorytoggleTask(int index){
+    _Historytasks[index].isCompleted = !_Historytasks[index].isCompleted;
+    notifyListeners();
+  }
+
 
 }

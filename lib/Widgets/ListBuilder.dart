@@ -32,6 +32,10 @@ class _ListbuilderState extends State<Listbuilder> {
                 value:task.isCompleted,
                 onChanged: (value) {
                   context.read<TaskProvider>().toggleTask(index);
+                  if(task.isCompleted){
+                    context.read<TaskProvider>().AddHistoryTask(task);
+                    context.read<TaskProvider>().RemoveTask(index);
+                   }
                 }),
             title: Text(task.title!,
                   style: TextStyle(
