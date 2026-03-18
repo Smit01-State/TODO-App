@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/Widgets/History_List_Builder.dart';
 
 import '../Models/task.dart';
 
@@ -22,7 +23,7 @@ class _HistoryPageState extends State<HistoryPage> {
 
 
 
-    final completedTask = context.watch<TaskProvider>().TaskGetter().where((task)=>task.isCompleted).toList();
+    final completedTask = context.watch<TaskProvider>().HistoryTasks;
 
     return Scaffold(
 
@@ -35,7 +36,7 @@ class _HistoryPageState extends State<HistoryPage> {
       Center(
         child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
       )
-          : Listbuilder(),
+          : HistoryListBuilder(),
     );
   }
 }

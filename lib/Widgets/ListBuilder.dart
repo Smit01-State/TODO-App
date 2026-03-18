@@ -4,21 +4,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_list/Models/task.dart';
-
 import '../ViewModel/Task_provider.dart';
 
 
 class Listbuilder extends StatefulWidget{
+  Listbuilder({super.key});
 
 
-
-  Listbuilder({
-
-      super.key,
-
-
-  });
 
   @override
   State<Listbuilder> createState() => _ListbuilderState();
@@ -30,10 +22,10 @@ class _ListbuilderState extends State<Listbuilder> {
 
     return ListView.separated(
 
-      itemCount: context.watch<TaskProvider>().TaskGetter().length,
+      itemCount: context.watch<TaskProvider>().Tasks.length,
       itemBuilder: (context, index ) {
 
-         final task = context.watch<TaskProvider>().TaskGetter()[index];
+         final task = context.watch<TaskProvider>().Tasks[index];
 
           return ListTile(
             leading: Checkbox.adaptive(
@@ -41,11 +33,11 @@ class _ListbuilderState extends State<Listbuilder> {
                 onChanged: (value) {
                   context.read<TaskProvider>().toggleTask(index);
                 }),
-            title: Text(task.title!,style: TextStyle(
-                color: task.isCompleted ? Colors.grey
-                    : Theme.of(context).colorScheme.onSurface,
-              decoration: task.isCompleted?TextDecoration.lineThrough:null,
-            ),
+            title: Text(task.title!,
+                  style: TextStyle(
+                        color: task.isCompleted ? Colors.grey : Theme.of(context).colorScheme.onSurface,
+                    decoration: task.isCompleted?TextDecoration.lineThrough:null,
+                  ),
             ),
             subtitle: Text("${(task.DueDate)!.day}/${(task.DueDate)!.month}/${(task.DueDate)!.year}"),
 

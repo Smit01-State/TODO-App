@@ -6,17 +6,17 @@ import 'package:provider/provider.dart';
 import 'package:todo_list/Models/task.dart';
 import '../ViewModel/Task_provider.dart';
 
-class Todoaddcontent extends StatefulWidget{
+class TodoAddContent extends StatefulWidget{
 
+ final TaskProvider taskProvider;
 
-
-  Todoaddcontent({super.key, });
+  TodoAddContent({super.key,required this.taskProvider});
 
   @override
-  State<Todoaddcontent> createState() => _TodoaddcontentState();
+  State<TodoAddContent> createState() => _TodoaddcontentState();
 }
 
-class _TodoaddcontentState extends State<Todoaddcontent> {
+class _TodoaddcontentState extends State<TodoAddContent> {
 
   var _todoTitleControler = TextEditingController();
 
@@ -28,7 +28,7 @@ class _TodoaddcontentState extends State<Todoaddcontent> {
 
   @override
   void dispose() {
-
+    super.dispose();
     _todoDateControler.dispose();
     _todoDetailControler.dispose();
     _todoTitleControler.dispose();
@@ -72,7 +72,7 @@ class _TodoaddcontentState extends State<Todoaddcontent> {
               onTap: (){
                 showDatePicker(
                   context: context,
-                    firstDate: DateTime(1900),
+                    firstDate: DateTime.now(),
                     lastDate: DateTime(2100),
                     initialDate: DateTime.now(),
                 ).then( (Date){
@@ -92,15 +92,20 @@ class _TodoaddcontentState extends State<Todoaddcontent> {
         TextButton(onPressed: (){
           Navigator.pop(context);
         }, child: Text("Discard")),
-        FilledButton(onPressed: (){
-          final task = Task(
-            title: _todoTitleControler.text.toString(),
-            detail: _todoDateControler.text.toString(),
-            DueDate: SelectedDate
-          );
-          context.read<TaskProvider>().AddTask(task);
-          Navigator.pop(context);
-        }, child: Text("Add")), // adding a action to add this content to list
+         FilledButton(
+             onPressed: (){
+               final task = Task(
+                  title: _todoTitleControler.text.toString(),
+                  detail: _todoDateControler.text.toString(),
+                  DueDate: SelectedDate
+                );
+                widget.taskProvider.AddTask(task);
+               //context.read<TaskProvider>().AddTask(task);
+                Navigator.pop(context);
+             },
+             child: Text("Add")),
+
+         // adding a action to add this content to list
 
       ],
     );

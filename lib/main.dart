@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
       themeMode: context.watch<ThememodeProvider>().getMode,
 
       home: ChangeNotifierProvider(
-        create: (context)=>TaskProvider(),
+          create: (context)=>TaskProvider(),
           child: NavigatorPage()
       ),
 

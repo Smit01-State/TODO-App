@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("TODO List"),
       ),
 
-      body: context.watch<TaskProvider>().TaskGetter().isEmpty?
+      body: context.watch<TaskProvider>().Tasks.isEmpty?
       Center(
         child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
       )
@@ -41,17 +41,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          showTodoAddDialog();
+          final taskProvider = Provider.of<TaskProvider>(context,listen: false);
+          showTodoAddDialog(taskProvider);
       },
         child: Icon(Icons.add),),
     );
   }
-
-  void showTodoAddDialog() {
+//final taskProvider = Provider.of<TaskProvider>(context,listen: false);
+  void showTodoAddDialog(taskP) {
     showDialog(
       barrierDismissible: false,
         context: context,
-        builder: (context) => Todoaddcontent()
+        builder: (_) => TodoAddContent(taskProvider: taskP) // this is class({required this. ..}) Constructor method
+      /*(DialogContext){
+        return ChangeNotifierProvider.value( // .value() this help as to use existing provider Instance not Create new one.!
+            value: Provider.of<TaskProvider>(context),
+          child: TodoAddContent(),
+         );
+        }*/
     );
   } // builder
 }
