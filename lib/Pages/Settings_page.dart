@@ -45,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
               ),
               IconButton(
-                color: context.watch<ThememodeProvider>().ColorGettter(),
+                color: context.watch<ThememodeProvider>().ThemeColor,
                   onPressed: (){
                     ShowcolorPaled(context);
                   },
@@ -65,7 +65,7 @@ class _SettingsPageState extends State<SettingsPage> {
       actions: [
         TextButton(onPressed: (){}, child: Text("discard")), //discard
         FilledButton(onPressed: (){
-          print("${Provider.of<ThememodeProvider>(context,listen: false).ColorGettter()}");
+          print("${Provider.of<ThememodeProvider>(context,listen: false).ThemeColor}");
           Navigator.pop(context);
         }, child: Text("select"))
       ],
@@ -74,7 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget? PikerColor()=> ColorPicker(
-        pickerColor: context.read<ThememodeProvider>().ColorGettter(),
+        pickerColor: context.read<ThememodeProvider>().ThemeColor,
         onColorChanged: (color){
           context.read<ThememodeProvider>().ColorChange(color);
           /*setState(() {

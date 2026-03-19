@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo_list/Models/const/ConstatSP.dart';
+import 'package:todo_list/Models/const/ConstantSP.dart';
 
 
 import 'Pages/Navigator_page.dart';
@@ -12,12 +12,13 @@ import 'ViewModel/ThemeMode_provider.dart';
 
 void main() async {
  WidgetsFlutterBinding.ensureInitialized();
-  final shrf = await SharedPreferences.getInstance();
-  final  isdark = shrf.getBool(Constatsp.THEMEMODE_KEY) ?? false;
+  final  shrf = await SharedPreferences.getInstance();
+  final  isdark = shrf.getBool(Constsp.THEMEMODE_KEY) ?? false;
+  final NewColor = Color(shrf.getInt(Constsp.THEMECOLOR_KEY) ?? Colors.blue.value); //
 
 
   runApp(ChangeNotifierProvider(
-          create: (context)=> ThememodeProvider(isdark),
+          create: (context)=> ThememodeProvider(isdark,NewColor),
           child: MyApp()
         )
   );
@@ -51,12 +52,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
 
     late final _lightColorScheme = ColorScheme.fromSeed(
-        seedColor: context.watch<ThememodeProvider>().ColorGettter(),
+        seedColor: context.watch<ThememodeProvider>().ThemeColor,
         brightness: Brightness.light
     );
 
     late final _DarkColorScheme = ColorScheme.fromSeed(
-        seedColor: context.watch<ThememodeProvider>().ColorGettter(),
+        seedColor: context.watch<ThememodeProvider>().ThemeColor,
         brightness: Brightness.dark
     );
 

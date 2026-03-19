@@ -3,7 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todo_list/Models/const/ConstatSP.dart';
+import 'package:todo_list/Models/const/ConstantSP.dart';
+
  
 
 
@@ -14,11 +15,14 @@ class ThememodeProvider extends ChangeNotifier{
   Color _color = Colors.brown;
  /// getter
   ThemeMode get getMode => _themeMode;
-  Color ColorGettter()=>_color;
+
+  Color get ThemeColor =>_color;
 
 /// method
 
-   ThememodeProvider(bool isDark){
+   ThememodeProvider(bool isDark,Color color ){
+
+          _color = color;
         if(isDark){
           _themeMode=ThemeMode.dark;
         }
@@ -32,14 +36,17 @@ class ThememodeProvider extends ChangeNotifier{
      // _themeMode = _themeMode == ThemeMode.light? ThemeMode.dark:ThemeMode.light;
       if(_themeMode == ThemeMode.light){
         _themeMode = ThemeMode.dark;
-        shrf.setBool(Constatsp.THEMEMODE_KEY, true);
+        shrf.setBool(Constsp.THEMEMODE_KEY, true);
       }else{
         _themeMode = ThemeMode.light;
-        shrf.setBool(Constatsp.THEMEMODE_KEY, false);
+        shrf.setBool(Constsp.THEMEMODE_KEY, false);
       }
       notifyListeners();
   }
-  void ColorChange(Color color){
+
+  Future<void> ColorChange(Color color) async {
+     SharedPreferences shrf = await SharedPreferences.getInstance();
+     shrf.setInt(Constsp.THEMECOLOR_KEY, color.value);
     _color = color;
     notifyListeners();
   }
