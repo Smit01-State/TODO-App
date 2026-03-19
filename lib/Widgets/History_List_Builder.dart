@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/ViewModel/ThemeMode_provider.dart';
 
 import '../ViewModel/Task_provider.dart';
 
@@ -22,6 +23,7 @@ class HistoryListBuilder extends StatefulWidget{
 
         return ListTile(
           leading: IconButton(
+            color: context.watch<ThememodeProvider>().ThemeColor,
               onPressed: () {
                 context.read<TaskProvider>().HistorytoggleTask(index);
                 if(!Htask.isCompleted){

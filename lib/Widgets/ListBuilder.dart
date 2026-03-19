@@ -9,9 +9,6 @@ import '../ViewModel/Task_provider.dart';
 
 class Listbuilder extends StatefulWidget{
   Listbuilder({super.key});
-
-
-
   @override
   State<Listbuilder> createState() => _ListbuilderState();
 }
@@ -40,7 +37,7 @@ class _ListbuilderState extends State<Listbuilder> {
             title: Text(task.title!,
                   style: TextStyle(
                         color: task.isCompleted ? Colors.grey : Theme.of(context).colorScheme.onSurface,
-                    decoration: task.isCompleted?TextDecoration.lineThrough:null,
+                    decoration: task.isCompleted? TextDecoration.lineThrough : null,
                   ),
             ),
             subtitle: Text("${(task.DueDate)!.day}/${(task.DueDate)!.month}/${(task.DueDate)!.year}"),
