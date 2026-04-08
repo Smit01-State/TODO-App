@@ -19,12 +19,12 @@ class TodoAddContent extends StatefulWidget{
 class _TodoaddcontentState extends State<TodoAddContent> {
 
   var _todoTitleControler = TextEditingController();
-
   var _todoDetailControler = TextEditingController();
-
   var _todoDateControler = TextEditingController();
+  var _todoTimeControler = TextEditingController();
 
   late DateTime SelectedDate;
+  late TimeOfDay SelectedTime;
 
   @override
   void dispose() {
@@ -32,6 +32,7 @@ class _TodoaddcontentState extends State<TodoAddContent> {
     _todoDateControler.dispose();
     _todoDetailControler.dispose();
     _todoTitleControler.dispose();
+    _todoTimeControler.dispose();
   }
 
   @override
@@ -83,7 +84,30 @@ class _TodoaddcontentState extends State<TodoAddContent> {
                 });
 
               },
-            ),//date
+            ), //date
+            TextField(
+              controller: _todoTimeControler,
+              readOnly: true,
+              decoration: InputDecoration(
+                  labelText: "Time",
+                  prefixIcon: Icon(Icons.access_time),
+                  border: OutlineInputBorder()
+              ),
+              onTap: (){
+                showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                ).then((time){
+                  if(time != null){
+                    this.SelectedTime = time;
+                    final hh = SelectedTime.hourOfPeriod.toString().padLeft(2,'0');
+                    final mm = SelectedTime.minute.toString().padLeft(2,'0');
+                    _todoTimeControler.text = "$hh:$mm ${SelectedTime.period.name}";
+                  }
+                });
+              },
+
+            ),
           ],
 
         ),
@@ -96,8 +120,9 @@ class _TodoaddcontentState extends State<TodoAddContent> {
              onPressed: (){
                final task = Task(
                   title: _todoTitleControler.text.toString(),
-                  detail: _todoDateControler.text.toString(),
-                  DueDate: SelectedDate
+                  detail: _todoDetailControler.text.toString(),
+                  DueDate: SelectedDate,
+                  DueTime: SelectedTime,
                 );
                 widget.taskProvider.AddTask(task);
                //context.read<TaskProvider>().AddTask(task);

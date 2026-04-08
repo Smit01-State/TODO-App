@@ -5,6 +5,7 @@ import 'package:todo_list/Pages/History_page.dart';
 import 'package:todo_list/Pages/Home_page.dart';
 import 'package:todo_list/Pages/Search_page.dart';
 import 'package:todo_list/Pages/Settings_page.dart';
+import 'package:todo_list/Services/Local/DBHelper.dart';
 
 import '../Models/task.dart';
 
@@ -20,12 +21,12 @@ class NavigatorPage extends StatefulWidget{
 class _NavigatorPageState extends State<NavigatorPage> {
 
      PageController _pageController = PageController();
+     int _currentIndex = 0;
 
      void onTapPage(int index){
        _pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.ease);
      }
 
-    int _currentIndex = 0;
 
 
  //
@@ -36,6 +37,12 @@ class _NavigatorPageState extends State<NavigatorPage> {
     SettingsPage(),
   ];
 
+     @override
+  void initState() {
+    super.initState();
+     var DBInsiator  = DBHelper.DBInstance;
+     DBInsiator.getDB();
+  }
   @override
   Widget build(BuildContext context) {
 

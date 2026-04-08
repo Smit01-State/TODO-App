@@ -12,7 +12,7 @@ class ThememodeProvider extends ChangeNotifier{
 
 /// variable
   ThemeMode _themeMode = ThemeMode.light;
-  Color _color = Colors.brown;
+  Color _color = Colors.blue;
  /// getter
   ThemeMode get getMode => _themeMode;
 

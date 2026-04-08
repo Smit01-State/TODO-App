@@ -28,14 +28,12 @@ class _HistoryPageState extends State<HistoryPage> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        foregroundColor: Theme.of(context).colorScheme.onSecondary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         title: Text("TODO history"),
       ),
-      body: completedTask.isEmpty?
-      Center(
-        child: Text("Home Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
-      )
+      body: completedTask.isEmpty ?
+      Center(child: Text("History Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30), ), )
           : HistoryListBuilder(),
     );
   }

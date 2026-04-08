@@ -24,8 +24,8 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        foregroundColor: Theme.of(context).colorScheme.onSecondary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         title: Text("TODO Setting"),
       ),
       body: Center(
@@ -63,7 +63,10 @@ class _SettingsPageState extends State<SettingsPage> {
       title: Text("Pick a color"),
       content: PikerColor(),
       actions: [
-        TextButton(onPressed: (){}, child: Text("discard")), //discard
+        TextButton(onPressed: (){
+          Navigator.pop(context);
+          }, child: Text("discard")
+        ), //discard
         FilledButton(onPressed: (){
           print("${Provider.of<ThememodeProvider>(context,listen: false).ThemeColor}");
           Navigator.pop(context);

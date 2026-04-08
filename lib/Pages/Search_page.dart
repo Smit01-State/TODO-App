@@ -10,12 +10,20 @@ class SearchPage extends StatelessWidget{
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        foregroundColor: Theme.of(context).colorScheme.onSecondary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         title: Text(" TODO Search "),
       ),
       body: Center(
-          child: Text("Search Page",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+
+          child: Column(
+            mainAxisAlignment: .center,
+            children: [
+              Text("Search Page   ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+              SizedBox(height: 10,),
+              Text("Coming Soon...",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+            ],
+          ),
       ),
     );
   }

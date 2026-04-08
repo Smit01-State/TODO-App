@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/ViewModel/ThemeMode_provider.dart';
 
@@ -16,33 +17,39 @@ class HistoryListBuilder extends StatefulWidget{
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+
       itemCount: context.watch<TaskProvider>().HistoryTasks.length,
 
       itemBuilder: (context, index ) {
         final Htask = context.watch<TaskProvider>().HistoryTasks[index];
 
-        return ListTile(
-          leading: IconButton(
-            color: context.watch<ThememodeProvider>().ThemeColor,
-              onPressed: () {
-                context.read<TaskProvider>().HistorytoggleTask(index);
-                if(!Htask.isCompleted){
-                  context.read<TaskProvider>().AddTask(Htask);
-                  context.read<TaskProvider>().RemoveHistoryTask(index);
-                }
-              },icon: Icon(Icons.settings_backup_restore),),
-          title: Text(Htask.title!,style: TextStyle(
-            color: Htask.isCompleted ? Colors.grey
-                : Theme.of(context).colorScheme.onSurface,
-            decoration: Htask.isCompleted?TextDecoration.lineThrough:null,
-          ),
-          ),
-          subtitle: Text("${(Htask.DueDate)!.day}/${(Htask.DueDate)!.month}/${(Htask.DueDate)!.year}"),
-          trailing: IconButton(onPressed: (){
+        return Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Card(
+            elevation: 2,
+            child: ListTile(
+              leading: IconButton(
+                  onPressed: () {
+                    context.read<TaskProvider>().HistorytoggleTask(index);
+                    if(!Htask.isCompleted){
+                      context.read<TaskProvider>().AddTask(Htask);
+                      context.read<TaskProvider>().RemoveHistoryTask(index);
+                    }
+                  },icon: Icon(Icons.settings_backup_restore),),
+              title: Text(Htask.title!,style: TextStyle(
+                color: Htask.isCompleted ? Colors.grey
+                    : Theme.of(context).colorScheme.onSurface,
+                decoration: Htask.isCompleted?TextDecoration.lineThrough:null,
+              ),
+              ),
+              subtitle: Text("${DateFormat("MMMM d yyyy").format(Htask.DueDate!)}"),
+              trailing: IconButton(onPressed: (){
 
-            context.read<TaskProvider>().RemoveHistoryTask(index);
+                context.read<TaskProvider>().RemoveHistoryTask(index);
 
-          }, icon: Icon(Icons.delete_forever)),
+              }, icon: Icon(Icons.delete_forever)),
+            ),
+          ),
         );
 
 // adjust

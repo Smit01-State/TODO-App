@@ -17,8 +17,11 @@ void main() async {
   final NewColor = Color(shrf.getInt(Constsp.THEMECOLOR_KEY) ?? Colors.blue.value); //
 
 
-  runApp(ChangeNotifierProvider(
-          create: (context)=> ThememodeProvider(isdark,NewColor),
+  runApp(MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context)=> ThememodeProvider(isdark,NewColor),),
+            ChangeNotifierProvider(create: (context)=>TaskProvider(),),
+          ],
           child: MyApp()
         )
   );
@@ -58,7 +61,8 @@ class _MyAppState extends State<MyApp> {
 
     late final _DarkColorScheme = ColorScheme.fromSeed(
         seedColor: context.watch<ThememodeProvider>().ThemeColor,
-        brightness: Brightness.dark
+        brightness:Brightness.dark,
+      contrastLevel: 0.2
     );
 
     return MaterialApp(
@@ -71,11 +75,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(colorScheme: _DarkColorScheme, ),
       themeMode: context.watch<ThememodeProvider>().getMode,
 
-      home: ChangeNotifierProvider(
-          create: (context)=>TaskProvider(),
-          child: NavigatorPage()
-      ),
-
+      home:NavigatorPage(),
     );
   }
 }
