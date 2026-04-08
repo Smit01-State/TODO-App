@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget{
-  const SearchPage({super.key});
+  const SearchPage({super.key,required this.Title});
+
+  final String Title;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class SearchPage extends StatelessWidget{
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        title: Text(" TODO Search "),
+        title: Center(child: Text(Title)),
       ),
       body: Center(
 
@@ -21,7 +23,7 @@ class SearchPage extends StatelessWidget{
             children: [
               Text("Search Page   ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
               SizedBox(height: 10,),
-              Text("Coming Soon...",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              Text("Coming Soon ...",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
             ],
           ),
       ),

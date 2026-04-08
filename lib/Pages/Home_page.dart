@@ -9,9 +9,9 @@ import '../Widgets/ListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 
 class MyHomePage extends StatefulWidget {
+    MyHomePage({super.key,required this.Title});
 
-   MyHomePage({super.key,});
-
+   final  Title;
 
 
   @override
@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        title: Text("TODO List"),
+        title: Center(child: Text(widget.Title)),
       ),
 
       body: context.watch<TaskProvider>().Tasks.isEmpty?

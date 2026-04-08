@@ -10,9 +10,9 @@ import '../ViewModel/Task_provider.dart';
 import '../Widgets/ListBuilder.dart';
 
 class HistoryPage extends StatefulWidget{
-   HistoryPage({super.key});
+   HistoryPage({super.key,required this.Title});
 
-
+final String Title;
   @override
   State<HistoryPage> createState() => _HistoryPageState();
 }
@@ -30,7 +30,7 @@ class _HistoryPageState extends State<HistoryPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        title: Text("TODO history"),
+        title: Center(child: Text(widget.Title)),
       ),
       body: completedTask.isEmpty ?
       Center(child: Text("History Page , empty list ",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30), ), )

@@ -11,7 +11,7 @@ import 'package:todo_list/Models/const/ConstantSP.dart';
 class ThememodeProvider extends ChangeNotifier{
 
 /// variable
-  ThemeMode _themeMode = ThemeMode.light;
+  ThemeMode _themeMode = ThemeMode.system;
   Color _color = Colors.blue;
  /// getter
   ThemeMode get getMode => _themeMode;
