@@ -77,7 +77,26 @@ class _SettingsPageState extends State<SettingsPage> {
                 Text("About"),
                 Column(
                   children: [
-                    ListTile(title: Text("Share App"),),
+
+                    ListTile(
+                      title: Text("Coming Soon Features"),
+                      onTap: (){
+                        showDialog(context: context, builder: (_)=>AlertDialog(
+                          title: Text("New feature"),
+                          content:SizedBox(
+                            height: 100,
+                            child: Column(
+                              crossAxisAlignment: .start,
+                              children: [
+                                Text("1.notification & reminder"),
+                                Text("2.google sync"),
+                                Text("3.Ui can improve in future"),
+                              ],
+                            ),
+                          ),
+                        ));
+                      },
+                    ),
                     ListTile(title: Text("feedback"),),
                     ListTile(title: Text("Version: 0.0.0.1 "),),
                   ],

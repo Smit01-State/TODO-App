@@ -9,9 +9,10 @@ import '../Widgets/ListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 
 class MyHomePage extends StatefulWidget {
-    MyHomePage({super.key,required this.Title});
 
-   final  Title;
+   const MyHomePage({super.key,required this.Title});
+
+   final Title;
 
 
   @override

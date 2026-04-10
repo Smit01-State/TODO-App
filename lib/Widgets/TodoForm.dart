@@ -3,7 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:todo_list/Models/task.dart';
+import 'package:todo_list/Services/Local/DBHelper.dart';
 import '../ViewModel/Task_provider.dart';
 
 class TodoAddContent extends StatefulWidget{
@@ -22,6 +24,8 @@ class _TodoaddcontentState extends State<TodoAddContent> {
   var _todoDetailControler = TextEditingController();
   var _todoDateControler = TextEditingController();
   var _todoTimeControler = TextEditingController();
+
+
 
   late DateTime SelectedDate;
   late TimeOfDay SelectedTime;
@@ -117,13 +121,15 @@ class _TodoaddcontentState extends State<TodoAddContent> {
           Navigator.pop(context);
         }, child: Text("Discard")),
          FilledButton(
-             onPressed: (){
+             onPressed: ()  {
+
                final task = Task(
                   title: _todoTitleControler.text.toString(),
                   detail: _todoDetailControler.text.toString(),
                   DueDate: SelectedDate,
                   DueTime: SelectedTime,
                 );
+               print(SelectedTime.toString());
                 widget.taskProvider.AddTask(task);
                //context.read<TaskProvider>().AddTask(task);
                 Navigator.pop(context);
