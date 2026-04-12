@@ -8,7 +8,7 @@ import 'package:todo_list/Models/const/ConstantSP.dart';
 
 class Task {  // blueprint use this to create a objects
 
-  int? taskId;
+  String? taskId;
   String? title;
   String? detail;
   DateTime? DueDate;
@@ -25,13 +25,13 @@ class Task {  // blueprint use this to create a objects
     this.isCompleted = false,
   });
 
-  // Model → Map (for INSERT / UPDATE)
+  // Model → Map (for INSERT / UPDATE )
   Map<String , dynamic> tomap(){
 
     String Date = DueDate!.toIso8601String();
-    String Time =  '${DueTime!.hour.toString().padLeft(2, '0')}:${DueTime!.minute.toString().padLeft(2, '0')}';
+    String Time = '${DueTime!.hour.toString().padLeft(2, '0')}:${DueTime!.minute.toString().padLeft(2, '0')}';
     int CompleteTask = 0;
-     CompleteTask = isCompleted?1:0;
+     CompleteTask = isCompleted? 1 : 0;
 
     return {
       '${DBConstant.TASK_TITLE}' : title,
@@ -55,11 +55,11 @@ class Task {  // blueprint use this to create a objects
 
 
     return Task(
-      taskId : map['${DBConstant.TASK_ID}'],
+      taskId : map['${DBConstant.TASK_ID}'].toString(),
       title  : map['${DBConstant.TASK_TITLE}'] ,
       detail : map['${DBConstant.TASK_DISC}'],
-      DueDate:Date,
-      DueTime:Time,
+      DueDate: Date,
+      DueTime: Time,
       isCompleted : CompleteTask,
 
     );

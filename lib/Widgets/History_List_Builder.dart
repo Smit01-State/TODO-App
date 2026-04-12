@@ -16,7 +16,7 @@ class HistoryListBuilder extends StatefulWidget{
   class _HistoryListBuilder extends State<HistoryListBuilder>{
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return ListView.builder(
 
       itemCount: context.watch<TaskProvider>().HistoryTasks.length,
 
@@ -32,8 +32,8 @@ class HistoryListBuilder extends StatefulWidget{
                   onPressed: () {
                     context.read<TaskProvider>().HistorytoggleTask(index);
                     if(!Htask.isCompleted){
-                      context.read<TaskProvider>().AddTask(Htask);
-                      context.read<TaskProvider>().RemoveHistoryTask(index);
+                      context.read<TaskProvider>().ShowDBTask(); // show in home page because it notify the taskList and update if any changes
+                      context.read<TaskProvider>().RemoveHistoryTask(index); // it just remove from HistoryList
                     }
                   },icon: Icon(Icons.settings_backup_restore),),
               title: Text(Htask.title!,style: TextStyle(
@@ -45,22 +45,14 @@ class HistoryListBuilder extends StatefulWidget{
               subtitle: Text("${DateFormat("MMMM d yyyy").format(Htask.DueDate!)}"),
               trailing: IconButton(onPressed: (){
 
-                context.read<TaskProvider>().RemoveHistoryTask(index);
+                context.read<TaskProvider>().RemoveDBTask(index);
 
               }, icon: Icon(Icons.delete_forever)),
             ),
           ),
         );
-
 // adjust
       },
-      separatorBuilder: ( context,  index) {
-        return const Divider(
-          thickness: 1,
-          height: 1,
-        );
-      },
-
     );
   }
 }

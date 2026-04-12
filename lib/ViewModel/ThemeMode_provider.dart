@@ -19,7 +19,7 @@ class ThememodeProvider extends ChangeNotifier{
   Color get ThemeColor =>_color;
 
 /// method
-
+    // Constructor
    ThememodeProvider(bool isDark,Color color ){
 
           _color = color;

@@ -51,11 +51,18 @@ class DBHelper {
     db.insert(DBConstant.TABLE_NAME, map);
   }
 
-  Future<List<Task>> select(Database db,) async {
+  Future<List<Task>> select(Database db, bit ) async { // bit  0 or 1
 
-    final List<Map<String, dynamic>> maps = await db.query(DBConstant.TABLE_NAME);
-
+    final List<Map<String, dynamic>> maps = await db.query(DBConstant.TABLE_NAME,where: "Tasks_isCompleted = ? " , whereArgs: [bit] );
     return maps.map((map)=>Task.FromMap(map)).toList();
+  }
+
+  void UpdateTask(Database db, id, value){
+    db.update(DBConstant.TABLE_NAME, {"Tasks_isCompleted": value } , where: 'Tasks_id = ? ', whereArgs:[id] );
+  }
+
+  void RemoveTask(Database db, id){
+    db.delete(DBConstant.TABLE_NAME, where:'Tasks_id = ? ', whereArgs: [id] );
   }
 
 

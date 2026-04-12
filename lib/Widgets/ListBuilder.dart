@@ -15,16 +15,17 @@ class Listbuilder extends StatefulWidget{
 }
 
 class _ListbuilderState extends State<Listbuilder> {
+
+  ScrollController _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
 
     return ListView.builder(
-
+      controller: _controller,
       itemCount: context.watch<TaskProvider>().Tasks.length,
       itemBuilder: (context, index ) {
 
          final task = context.watch<TaskProvider>().Tasks[index];
-
           return Padding(
             padding: const EdgeInsetsGeometry.all(5.0),
             child: Card(
@@ -51,10 +52,8 @@ class _ListbuilderState extends State<Listbuilder> {
               ),
             ),
           );
-
 // adjust
         },
-
 
     );
   }

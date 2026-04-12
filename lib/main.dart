@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:todo_list/Models/const/ConstantSP.dart';
 
 
+import 'Models/task.dart';
 import 'Pages/Navigator_page.dart';
+import 'Services/Local/DBHelper.dart';
 import 'ViewModel/Task_provider.dart';
 import 'ViewModel/ThemeMode_provider.dart';
 
 
 
 void main() async {
+  /// loading files before runApp
  WidgetsFlutterBinding.ensureInitialized();
+
+ /// SharedPreference
   final  shrf = await SharedPreferences.getInstance();
   final  isdark = shrf.getBool(Constsp.THEMEMODE_KEY) ?? false;
-  final NewColor = Color(shrf.getInt(Constsp.THEMECOLOR_KEY) ?? Colors.blue.value); //
+  final NewColor = Color(shrf.getInt(Constsp.THEMECOLOR_KEY) ?? Colors.blue.value);
+  /// DB
+  //DBHelper DBinst =DBHelper.DBInstance;
+
 
 
   runApp(MultiProvider(
@@ -29,7 +38,6 @@ void main() async {
 
 class MyApp extends StatefulWidget {
    MyApp({super.key,});
-
 
 
   @override
@@ -47,7 +55,12 @@ class _MyAppState extends State<MyApp> {
     });
 
   }*/
-
+@override
+  void initState() {
+    super.initState();
+    context.read<TaskProvider>().ShowDBTask();
+    context.read<TaskProvider>().ShowDBHistoryTask();
+  }
 
 
   // This widget is the root of your application.
