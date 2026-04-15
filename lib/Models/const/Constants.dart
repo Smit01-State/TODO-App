@@ -1,13 +1,9 @@
-
-
 class Constsp {
-
-  static String THEMEMODE_KEY ="Theme_Mode";
-  static String THEMECOLOR_KEY ="Theme_Color";
+  static String THEMEMODE_KEY = "Theme_Mode";
+  static String THEMECOLOR_KEY = "Theme_Color";
 }
 
-class DBConstant{
-
+class DBConstant {
   static String TABLE_NAME = "Tasks";
   static String TASK_ID = "Tasks_id";
   static String TASK_TITLE = "Tasks_title";
@@ -15,5 +11,4 @@ class DBConstant{
   static String TASK_DUEDATE = "Tasks_date";
   static String TASK_TIME = "Tasks_time";
   static String TASK_isCompleted = "Tasks_isCompleted";
-
 }
