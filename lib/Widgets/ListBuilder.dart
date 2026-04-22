@@ -24,38 +24,45 @@ class _ListbuilderState extends State<Listbuilder> {
         return Padding(
           padding: const EdgeInsetsGeometry.all(4.0),
           child: Card(
-            elevation: 2,
-            child: ListTile(
-              leading: Checkbox.adaptive(
-                value: task.isCompleted,
-                onChanged: (value) {
-                  context.read<TaskProvider>().toggleTask(index);
-                  if (task.isCompleted) {
-                    context.read<TaskProvider>().AddHistoryTask(task);
-                    context.read<TaskProvider>().RemoveTask(index);
-                  }
-                },
+            elevation: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 0.4),
+                borderRadius: BorderRadius.circular(12),
               ),
-              title: Text(
-                task.title!,
-                style: TextStyle(
-                  color: task.isCompleted
-                      ? Colors.grey
-                      : Theme.of(context).colorScheme.onSurface,
-                  decoration: task.isCompleted
-                      ? TextDecoration.lineThrough
-                      : null,
+              child: ListTile(
+                leading: Checkbox.adaptive(
+                  value: task.isCompleted,
+                  onChanged: (value) {
+                    context.read<TaskProvider>().toggleTask(index);
+                    if (task.isCompleted) {
+                      context.read<TaskProvider>().AddHistoryTask(task);
+                      context.read<TaskProvider>().RemoveTask(index);
+                    }
+                  },
                 ),
+                title: Text(
+                  task.title!,
+                  style: TextStyle(
+                    color: task.isCompleted
+                        ? Colors.grey
+                        : Theme.of(context).colorScheme.onSurface,
+                    decoration: task.isCompleted
+                        ? TextDecoration.lineThrough
+                        : null,
+                  ),
+                ),
+                subtitle: Text(
+                  "${task.detail}",
+                  style: TextStyle(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                trailing: Text(
+                  "${DateFormat("MMMM d yyyy").format(task.DueDate!)}",
+                ),
+                isThreeLine: false,
               ),
-              subtitle: Text(
-                "${task.detail}",
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              trailing: Text(
-                "${DateFormat("MMMM d yyyy").format(task.DueDate!)}",
-              ),
-              isThreeLine: false,
             ),
           ),
         );

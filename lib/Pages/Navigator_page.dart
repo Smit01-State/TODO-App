@@ -57,11 +57,10 @@ class _NavigatorPageState extends State<NavigatorPage> {
             index: _currentIndex,
             children: _Pages,
       ),*/
-      bottomNavigationBar: Card(
+      bottomNavigationBar: Container(
         child: NavigationBar(
           selectedIndex: _currentIndex,
           onDestinationSelected: onTapPage,
-
           destinations: [
             NavigationDestination(
               icon: Icon(Icons.home_outlined),

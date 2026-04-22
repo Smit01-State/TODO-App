@@ -19,11 +19,16 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        title: Center(child: Text(widget.Title)),
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        foregroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
+        title: Text(
+          widget.Title,
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
+
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -108,7 +113,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     },
                   ),
                   ListTile(title: Text("feedback")),
-                  ListTile(title: Text("Version: 1.0.0")),
+                  ListTile(title: Text("Version: 1.2.0")),
                 ],
               ),
               // UiColorpicker(),
