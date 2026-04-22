@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key, required this.Title});
@@ -17,14 +18,15 @@ class SearchPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            Text(
-              "Search Page   ",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            ),
             SizedBox(height: 10),
             Text(
-              "Coming Soon ...",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              "Work in Progress...",
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+            ),
+            Lottie.asset(
+              'assets/Animation/coding.json',
+              width: 300,
+              height: 300,
             ),
           ],
         ),

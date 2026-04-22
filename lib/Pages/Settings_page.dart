@@ -87,13 +87,20 @@ class _SettingsPageState extends State<SettingsPage> {
                           title: Text("New feature"),
                           content: SizedBox(
                             height: 100,
-                            child: Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                Text("1.notification & reminder"),
-                                Text("2.google sync"),
-                                Text("3.Ui can improve in future"),
-                              ],
+                            child: SingleChildScrollView(
+                              scrollDirection: .vertical,
+                              child: Column(
+                                crossAxisAlignment: .start,
+                                children: [
+                                  Text("1.notification & reminder ✅"),
+                                  Text("2.google sync"),
+                                  Text("3.Ui Improvement"),
+                                  Text("4.Rescheduling Task"),
+                                  Text("5.Task handle with null value"),
+                                  Text("6.Calendar"),
+                                  Text("7.Search Bar"),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -101,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     },
                   ),
                   ListTile(title: Text("feedback")),
-                  ListTile(title: Text("Version: 0.0.0.1 ")),
+                  ListTile(title: Text("Version: 1.0.0")),
                 ],
               ),
               // UiColorpicker(),

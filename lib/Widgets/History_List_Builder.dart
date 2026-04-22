@@ -21,7 +21,7 @@ class _HistoryListBuilder extends State<HistoryListBuilder> {
         final Htask = context.watch<TaskProvider>().HistoryTasks[index];
 
         return Padding(
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(4.0),
           child: Card(
             elevation: 2,
             child: ListTile(

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/Pages/Calender_page.dart';
 import 'package:todo_list/Pages/History_page.dart';
 import 'package:todo_list/Pages/Home_page.dart';
-import 'package:todo_list/Pages/Search_page.dart';
 import 'package:todo_list/Pages/Settings_page.dart';
 import 'package:todo_list/Services/Local/DBHelper.dart';
-
-import '../Models/task.dart';
 
 class NavigatorPage extends StatefulWidget {
   NavigatorPage({super.key});
@@ -30,7 +28,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   //
   late final List<Widget> _Pages = [
     MyHomePage(Title: "Todo"),
-    SearchPage(Title: "Search"),
+    SearchPage(Title: "Calender"),
     HistoryPage(Title: "History"),
     SettingsPage(Title: "Settings"),
   ];
@@ -71,9 +69,9 @@ class _NavigatorPageState extends State<NavigatorPage> {
               selectedIcon: Icon(Icons.home),
             ),
             NavigationDestination(
-              icon: Icon(Icons.search_rounded),
-              label: "Search",
-              selectedIcon: Icon(Icons.search_rounded),
+              icon: Icon(Icons.calendar_month_outlined),
+              label: "Calender",
+              selectedIcon: Icon(Icons.calendar_month),
             ),
             NavigationDestination(
               icon: Icon(Icons.history_toggle_off),

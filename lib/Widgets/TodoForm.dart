@@ -41,6 +41,7 @@ class _TodoaddcontentState extends State<TodoAddContent> {
           spacing: 10,
           children: [
             TextField(
+              textInputAction: TextInputAction.next,
               controller: _todoTitleControler,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.title),
@@ -49,6 +50,7 @@ class _TodoaddcontentState extends State<TodoAddContent> {
               ),
             ), //title
             TextField(
+              textInputAction: TextInputAction.next,
               controller: _todoDetailControler,
               maxLines: 4,
               keyboardType: .multiline,
@@ -122,8 +124,7 @@ class _TodoaddcontentState extends State<TodoAddContent> {
             final task = Task(
               title: _todoTitleControler.text.toString(),
               detail: _todoDetailControler.text.toString(),
-              DueDate: SelectedDate,
-              DueTime: SelectedTime,
+              DueDate: _CombineDateAndTime(SelectedDate, SelectedTime),
             );
             print(SelectedTime.toString());
             widget.taskProvider.AddTask(task);
@@ -136,5 +137,10 @@ class _TodoaddcontentState extends State<TodoAddContent> {
         // adding a action to add this content to list
       ],
     );
+  }
+
+  /// extra methods
+  DateTime _CombineDateAndTime(DateTime date, TimeOfDay time) {
+    return DateTime(date.year, date.month, date.day, time.hour, time.minute, 0);
   }
 }

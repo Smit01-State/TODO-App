@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'const/Constants.dart';
 
 class Task {
@@ -9,7 +7,7 @@ class Task {
   String? title;
   String? detail;
   DateTime? DueDate;
-  TimeOfDay? DueTime;
+
   bool isCompleted;
 
   Task({
@@ -17,15 +15,14 @@ class Task {
     required this.title,
     this.detail = '',
     this.DueDate,
-    this.DueTime,
+
     this.isCompleted = false,
   });
 
   // Model → Map (for INSERT / UPDATE )
   Map<String, dynamic> tomap() {
     String Date = DueDate!.toIso8601String();
-    String Time =
-        '${DueTime!.hour.toString().padLeft(2, '0')}:${DueTime!.minute.toString().padLeft(2, '0')}';
+
     int CompleteTask = 0;
     CompleteTask = isCompleted ? 1 : 0;
 
@@ -33,7 +30,6 @@ class Task {
       '${DBConstant.TASK_TITLE}': title,
       '${DBConstant.TASK_DISC}': detail,
       '${DBConstant.TASK_DUEDATE}': Date,
-      '${DBConstant.TASK_TIME}': Time,
       '${DBConstant.TASK_isCompleted}': CompleteTask,
     };
   }
@@ -43,11 +39,6 @@ class Task {
     DateTime Date = DateTime.parse(
       map['${DBConstant.TASK_DUEDATE}'],
     ); // String ->DateTime
-    final parts = (map['${DBConstant.TASK_TIME}']).split(':');
-    TimeOfDay Time = TimeOfDay(
-      hour: int.parse(parts[0]),
-      minute: int.parse(parts[1]),
-    ); // String → TimeOfDay
     bool CompleteTask = map['${DBConstant.TASK_isCompleted}'] == 0
         ? false
         : true; // int -> boolean
@@ -57,7 +48,7 @@ class Task {
       title: map['${DBConstant.TASK_TITLE}'],
       detail: map['${DBConstant.TASK_DISC}'],
       DueDate: Date,
-      DueTime: Time,
+
       isCompleted: CompleteTask,
     );
   }

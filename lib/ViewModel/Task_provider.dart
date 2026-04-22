@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_list/Services/Local/DBHelper.dart';
+import 'package:todo_list/Services/Local/Noti_Services.dart';
 
 import '../Models/task.dart';
 
 class TaskProvider extends ChangeNotifier {
   /// initiator
   DBHelper DBinst = DBHelper.DBInstance;
+  NotiServices NotiFinast = NotiServices.Noti_Instance;
 
   ///Lists
   List<Task> _tasks = [];
@@ -30,12 +32,20 @@ class TaskProvider extends ChangeNotifier {
   Future<void> AddTask(Task task) async {
     Database DB = await DBinst.getDB();
 
-    DBinst.Insert(DB, task.tomap());
+    int Taskid = await DBinst.Insert(DB, task.tomap());
     Future<List<Task>> newTasks = DBinst.select(
       DB,
       0,
     ); // in place of bit 0 because the new task added ans shown
     _tasks = await newTasks;
+
+    // notification
+    NotiFinast.Schedule_Notification(
+      id: Taskid,
+      ScheduledDate: task.DueDate,
+      title: task.title,
+      Detail: task.detail,
+    );
     notifyListeners();
   }
 
@@ -44,16 +54,18 @@ class TaskProvider extends ChangeNotifier {
 
     final String id =
         _tasks[index].taskId!; // store the id for counter DB delay
+    final int TaskId = int.parse(id); // for Notification
     int Cheker = _tasks[index].isCompleted
         ? 1
         : 0; // change boolean to 0 and 1 to update DB
 
-    print("index :${index}"); // debugger in terminal
+    /*print("index :${index}"); // debugger in terminal
     print("list length :${_tasks.length}"); // debugger in terminal
+    */
 
     Database DB = await DBinst.getDB();
-    DBinst.UpdateTask(DB, id, Cheker);
-
+    await DBinst.UpdateTask(DB, id, Cheker);
+    NotiServices().cancelNotification(TaskId); // notification Cancel
     notifyListeners();
   }
 

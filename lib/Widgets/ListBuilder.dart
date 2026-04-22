@@ -22,7 +22,7 @@ class _ListbuilderState extends State<Listbuilder> {
       itemBuilder: (context, index) {
         final task = context.watch<TaskProvider>().Tasks[index];
         return Padding(
-          padding: const EdgeInsetsGeometry.all(5.0),
+          padding: const EdgeInsetsGeometry.all(4.0),
           child: Card(
             elevation: 2,
             child: ListTile(
