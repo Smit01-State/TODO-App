@@ -75,6 +75,19 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> ResheduleTask(Task task, id) async {
+    Database DB = await DBinst.getDB();
+    DBinst.ResheduleTask(DB, id, task.tomap());
+    int Taskid = int.parse(id);
+    NotiFinast.Schedule_Notification(
+      id: Taskid,
+      ScheduledDate: task.DueDate,
+      title: task.title,
+      Detail: task.detail,
+    );
+    notifyListeners();
+  }
+
   /// for _Historytasks methods
   ///
   void ShowDBHistoryTask() async {

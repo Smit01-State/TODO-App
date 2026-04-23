@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../ViewModel/Task_provider.dart';
+import 'TodoForm.dart';
 
 class Listbuilder extends StatefulWidget {
   Listbuilder({super.key});
@@ -27,7 +28,10 @@ class _ListbuilderState extends State<Listbuilder> {
             elevation: 1,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 0.4),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  width: 0.4,
+                ),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListTile(
@@ -36,8 +40,8 @@ class _ListbuilderState extends State<Listbuilder> {
                   onChanged: (value) {
                     context.read<TaskProvider>().toggleTask(index);
                     if (task.isCompleted) {
-                      context.read<TaskProvider>().AddHistoryTask(task);
-                      context.read<TaskProvider>().RemoveTask(index);
+                      context.read<TaskProvider>().ShowDBTask();
+                      context.read<TaskProvider>().ShowDBHistoryTask();
                     }
                   },
                 ),
@@ -62,6 +66,16 @@ class _ListbuilderState extends State<Listbuilder> {
                   "${DateFormat("MMMM d yyyy").format(task.DueDate!)}",
                 ),
                 isThreeLine: false,
+                onTap: () {
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (_) => TodoAdd(
+                      existingTask: task,
+                      taskProvider: context.read<TaskProvider>(),
+                    ),
+                  );
+                },
               ),
             ),
           ),

@@ -56,6 +56,15 @@ class DBHelper {
     );
   }
 
+  Future<void> ResheduleTask(Database db, id, Map<String, dynamic> map) async {
+    db.update(
+      DBConstant.TABLE_NAME,
+      map,
+      where: 'Tasks_id = ? ',
+      whereArgs: [id],
+    );
+  }
+
   Future<void> RemoveTask(Database db, id) async {
     db.delete(DBConstant.TABLE_NAME, where: 'Tasks_id = ? ', whereArgs: [id]);
   }

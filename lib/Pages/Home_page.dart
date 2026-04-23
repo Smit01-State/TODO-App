@@ -6,9 +6,9 @@ import '../Widgets/ListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.Title});
-
   final Title;
+
+  const MyHomePage({super.key, required this.Title});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -17,6 +17,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final TaskProviderRead = context.read<TaskProvider>();
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
       appBar: AppBar(
@@ -39,31 +41,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          final taskProvider = Provider.of<TaskProvider>(
-            context,
-            listen: false,
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (_) => TodoAdd(taskProvider: TaskProviderRead),
           );
-          showTodoAddDialog(taskProvider);
         },
         child: Icon(Icons.add),
       ),
     );
   }
-
-  //final taskProvider = Provider.of<TaskProvider>(context,listen: false);
-  void showTodoAddDialog(taskP) {
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (_) => TodoAddContent(
-        taskProvider: taskP,
-      ), // this is class({required this. ..}) Constructor method
-      /*(DialogContext){
-        return ChangeNotifierProvider.value( // .value() this help as to use existing provider Instance not Create new one.!
-            value: Provider.of<TaskProvider>(context),
-          child: TodoAddContent(),
-         );
-        }*/
-    );
-  } // builder
 }

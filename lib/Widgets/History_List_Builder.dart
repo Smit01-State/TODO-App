@@ -26,7 +26,10 @@ class _HistoryListBuilder extends State<HistoryListBuilder> {
             elevation: 1,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 0.4),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  width: 0.4,
+                ),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListTile(

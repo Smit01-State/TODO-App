@@ -10,7 +10,7 @@
 
 
     <application
-        android:label="todo_list"
+        android:label="Todu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

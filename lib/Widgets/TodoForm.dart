@@ -3,16 +3,17 @@ import 'package:todo_list/Models/task.dart';
 
 import '../ViewModel/Task_provider.dart';
 
-class TodoAddContent extends StatefulWidget {
+class TodoAdd extends StatefulWidget {
   final TaskProvider taskProvider;
+  final Task? existingTask;
 
-  TodoAddContent({super.key, required this.taskProvider});
+  TodoAdd({super.key, required this.taskProvider, this.existingTask});
 
   @override
-  State<TodoAddContent> createState() => _TodoaddcontentState();
+  State<TodoAdd> createState() => _TodoaddState();
 }
 
-class _TodoaddcontentState extends State<TodoAddContent> {
+class _TodoaddState extends State<TodoAdd> {
   var _todoTitleControler = TextEditingController();
   var _todoDetailControler = TextEditingController();
   var _todoDateControler = TextEditingController();
@@ -22,18 +23,46 @@ class _TodoaddcontentState extends State<TodoAddContent> {
   late TimeOfDay SelectedTime;
 
   @override
+  void initState() {
+    super.initState();
+
+    final task = widget.existingTask;
+
+    if (task != null) {
+      // Pre-fill text fields
+      _todoTitleControler.text = task.title!;
+      _todoDetailControler.text = task.detail!;
+
+      // Pre-fill date
+      SelectedDate = task.DueDate!;
+      _todoDateControler.text =
+          "${task.DueDate!.day}/${task.DueDate!.month}/${task.DueDate!.year}";
+
+      // Pre-fill time
+      SelectedTime = TimeOfDay.fromDateTime(task.DueDate!);
+      final hh = SelectedTime.hourOfPeriod.toString().padLeft(2, '0');
+      final mm = SelectedTime.minute.toString().padLeft(2, '0');
+      _todoTimeControler.text = "$hh:$mm ${SelectedTime.period.name}";
+    } else {
+      // Safe defaults so the Add button doesn't crash on uninitialized late vars
+      SelectedDate = DateTime.now();
+      SelectedTime = TimeOfDay.now();
+    }
+  }
+
+  @override
   void dispose() {
     super.dispose();
-    _todoDateControler.dispose();
+    /*_todoDateControler.dispose();
     _todoDetailControler.dispose();
     _todoTitleControler.dispose();
-    _todoTimeControler.dispose();
+    _todoTimeControler.dispose();*/
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Add New Todo"),
+      title: Text(widget.existingTask != null ? "Edit Task" : "Add New Todo"),
       content: Container(
         width: 500,
         height: 500,
@@ -122,16 +151,28 @@ class _TodoaddcontentState extends State<TodoAddContent> {
         FilledButton(
           onPressed: () {
             final task = Task(
+              taskId: widget.existingTask?.taskId,
               title: _todoTitleControler.text.toString(),
               detail: _todoDetailControler.text.toString(),
               DueDate: _CombineDateAndTime(SelectedDate, SelectedTime),
             );
-            print(SelectedTime.toString());
-            widget.taskProvider.AddTask(task);
+
+            print(task.taskId);
+
+            if (widget.existingTask != null) {
+              widget.taskProvider.ResheduleTask(
+                task,
+                widget.existingTask?.taskId,
+              ); // edit path
+            } else {
+              widget.taskProvider.AddTask(task);
+            } // new task path
+            widget.taskProvider.ShowDBTask();
+
             //context.read<TaskProvider>().AddTask(task);
             Navigator.pop(context);
           },
-          child: Text("Add"),
+          child: Text(widget.existingTask != null ? "Save" : "Add"),
         ),
 
         // adding a action to add this content to list

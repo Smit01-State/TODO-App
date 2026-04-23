@@ -61,6 +61,8 @@ class _NavigatorPageState extends State<NavigatorPage> {
         child: NavigationBar(
           selectedIndex: _currentIndex,
           onDestinationSelected: onTapPage,
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+
           destinations: [
             NavigationDestination(
               icon: Icon(Icons.home_outlined),

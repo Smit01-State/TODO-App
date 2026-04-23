@@ -17,7 +17,7 @@ class _UiColorpicker extends State<UiColorpicker> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      color: context.watch<ThememodeProvider>().ThemeColor,
+      color: Theme.of(context).colorScheme.surfaceTint,
       onPressed: () {
         ShowcolorPaled(context);
       },

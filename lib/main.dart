@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      title: 'Flutter Demo',
+      title: 'Todu',
 
       theme: ThemeData(colorScheme: _lightColorScheme),
       darkTheme: ThemeData(colorScheme: _DarkColorScheme),
