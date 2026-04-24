@@ -32,6 +32,15 @@ android {
         multiDexEnabled = true
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("release-key.jks")
+            storePassword = "Todu123"
+            keyAlias = "release"
+            keyPassword = "Todu123"
+        }
+    }
+
     buildTypes {
         getByName("debug") {
             resValue("string", "Todu", "Todu Dev")

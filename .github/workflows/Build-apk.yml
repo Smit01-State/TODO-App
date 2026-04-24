@@ -36,6 +36,12 @@ jobs:
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
           echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
 
+      - name: Decode Keystore
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > android/app/release-key.jks
+
+      - name: Build APK
+        run: flutter build apk --release
 
       - name: Build APK
         run: flutter build apk --release
