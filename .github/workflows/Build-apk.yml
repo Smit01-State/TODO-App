@@ -6,6 +6,7 @@ on:
       - main   # or your branch name
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
 
@@ -20,6 +21,18 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        
+      - name: Extract version from pubspec.yaml
+        id: version
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          VERSION_NAME=$(echo $VERSION | cut -d '+' -f 1)
+          BUILD_NUMBER=$(echo $VERSION | cut -d '+' -f 2)
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+
 
       - name: Build APK
         run: flutter build apk --release
@@ -27,10 +40,19 @@ jobs:
       - name: Rename APK
         run: |
           mv build/app/outputs/flutter-apk/app-release.apk \
-          build/app/outputs/flutter-apk/Todu-${{ github.run_number }}.apk
+          build/app/outputs/flutter-apk/Todu-${{ steps.version.outputs.version }}.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: apk
           path: build/app/outputs/flutter-apk/*.apk
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.version_name }}
+          name: Release v${{ steps.version.outputs.version }}
+          files: build/app/outputs/flutter-apk/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
