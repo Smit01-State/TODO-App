@@ -111,7 +111,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         showDialog(
                           context: context,
                           builder: (_) => AlertDialog(
-                            title: Text("New Feature"),
+                            title: Text("future Features"),
                             content: SizedBox(
                               height: 100,
                               child: SingleChildScrollView(
@@ -119,13 +119,14 @@ class _SettingsPageState extends State<SettingsPage> {
                                 child: Column(
                                   crossAxisAlignment: .start,
                                   children: [
-                                    Text("1.notification & reminder ✅"),
-                                    Text("2.google sync"),
-                                    Text("3.Ui Improvement"),
-                                    Text("4.Rescheduling Task"),
-                                    Text("5.Task handle with null value"),
-                                    Text("6.Calendar"),
-                                    Text("7.Search Bar"),
+                                    Text("1.google sync"),
+                                    Text("2.Ui Improvement"),
+                                    Text("3.Task handle with null value"),
+                                    Text("4.Calendar"),
+                                    Text("5.Search Bar"),
+                                    Text(
+                                      "6.filter (today , this week ,this month ) ",
+                                    ),
                                   ],
                                 ),
                               ),
@@ -137,6 +138,32 @@ class _SettingsPageState extends State<SettingsPage> {
                     ListTile(
                       leading: Icon(Icons.feedback_outlined),
                       title: Text("Feedback"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.whatshot_outlined),
+                      title: Text("What's new?"),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            title: Text("New"),
+                            content: SizedBox(
+                              height: 100,
+                              child: SingleChildScrollView(
+                                scrollDirection: .vertical,
+                                child: Column(
+                                  crossAxisAlignment: .start,
+                                  children: [
+                                    Text("1.notification & reminder "),
+                                    Text("2.Rescheduling "),
+                                    Text("3.Setting page improve "),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     ListTile(
                       leading: Icon(Icons.info_outline),
