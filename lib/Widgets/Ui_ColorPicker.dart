@@ -16,12 +16,15 @@ class UiColorpicker extends StatefulWidget {
 class _UiColorpicker extends State<UiColorpicker> {
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      color: Theme.of(context).colorScheme.surfaceTint,
-      onPressed: () {
+    return ListTile(
+      leading: Icon(
+        Icons.palette,
+        color: Theme.of(context).colorScheme.surfaceTint,
+      ),
+      title: Text("Color Theme"),
+      onTap: () {
         ShowcolorPaled(context);
       },
-      icon: Icon(Icons.format_paint_outlined),
     );
   }
 

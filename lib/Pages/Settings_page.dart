@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_list/Widgets/Ui_ColorPicker.dart';
 
 import '../ViewModel/ThemeMode_provider.dart';
+import '../Widgets/Ui_ColorPicker.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({super.key, required this.Title});
@@ -16,6 +17,21 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  String _appVersion = "Loading...";
+
+  @override
+  void initState() {
+    super.initState();
+    _loadAppVersion();
+  }
+
+  Future<void> _loadAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    setState(() {
+      _appVersion = packageInfo.version;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,83 +51,99 @@ class _SettingsPageState extends State<SettingsPage> {
             mainAxisAlignment: .start,
             crossAxisAlignment: .start,
             children: [
-              Text("Customization"),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 16, 0, 8),
+                child: Text("Customization"),
+              ),
               Consumer(
                 builder: (context, value, child) {
-                  return Padding(
-                    padding: EdgeInsetsGeometry.all(5.0),
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        width: 0.4,
+                      ),
+                    ),
                     child: Column(
                       children: [
                         ListTile(
-                          title: Text("Theme mode"),
-                          trailing: IconButton(
+                          leading: Icon(
+                            context.watch<ThememodeProvider>().getMode ==
+                                    ThemeMode.light
+                                ? Icons.dark_mode
+                                : Icons.light_mode,
                             color: Theme.of(context).colorScheme.surfaceTint,
-                            onPressed: () {
-                              context
-                                  .read<ThememodeProvider>()
-                                  .ThemeModeToggale();
-                              // Provider.of<ThememodeProvider>(context,listen: false).ThemeModeToggale();
-                            },
-                            icon: Icon(
-                              context.watch<ThememodeProvider>().getMode ==
-                                      ThemeMode.light
-                                  ? Icons.dark_mode
-                                  : Icons.light_mode,
-                            ),
                           ),
+                          title: Text("Theme mode"),
+                          //trailing: ,
+                          onTap: () {
+                            context
+                                .read<ThememodeProvider>()
+                                .ThemeModeToggale();
+                            // Provider.of<ThememodeProvider>(context,listen: false).ThemeModeToggale();
+                          },
                         ),
-                        ListTile(
-                          title: Text("Color Theme"),
-                          trailing: UiColorpicker(),
-                        ),
+                        UiColorpicker(), // listTile for Color Pallet
                       ],
                     ),
                   );
-
-                  /*IconButton(
-                        onPressed: (){
-                          context.read<ThememodeProvider>().ThemeModeToggale();
-                       // Provider.of<ThememodeProvider>(context,listen: false).ThemeModeToggale();
-                        }, icon: Icon(context.watch<ThememodeProvider>().getMode ==ThemeMode.light?Icons.dark_mode:Icons.light_mode)
-                    );*/
                 },
               ),
-              Divider(),
-              Text("About"),
-              Column(
-                children: [
-                  ListTile(
-                    title: Text("Coming Soon Features"),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                          title: Text("New feature"),
-                          content: SizedBox(
-                            height: 100,
-                            child: SingleChildScrollView(
-                              scrollDirection: .vertical,
-                              child: Column(
-                                crossAxisAlignment: .start,
-                                children: [
-                                  Text("1.notification & reminder ✅"),
-                                  Text("2.google sync"),
-                                  Text("3.Ui Improvement"),
-                                  Text("4.Rescheduling Task"),
-                                  Text("5.Task handle with null value"),
-                                  Text("6.Calendar"),
-                                  Text("7.Search Bar"),
-                                ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 16, 0, 8),
+                child: Text("About"),
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    width: 0.4,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.upcoming_outlined),
+                      title: Text("Coming Soon Features"),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            title: Text("New Feature"),
+                            content: SizedBox(
+                              height: 100,
+                              child: SingleChildScrollView(
+                                scrollDirection: .vertical,
+                                child: Column(
+                                  crossAxisAlignment: .start,
+                                  children: [
+                                    Text("1.notification & reminder ✅"),
+                                    Text("2.google sync"),
+                                    Text("3.Ui Improvement"),
+                                    Text("4.Rescheduling Task"),
+                                    Text("5.Task handle with null value"),
+                                    Text("6.Calendar"),
+                                    Text("7.Search Bar"),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(title: Text("feedback")),
-                  ListTile(title: Text("Version: 2.0.0")),
-                ],
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.feedback_outlined),
+                      title: Text("Feedback"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.info_outline),
+                      title: Text("Version: $_appVersion"),
+                    ),
+                  ],
+                ),
               ),
               // UiColorpicker(),
               SizedBox(height: 10),

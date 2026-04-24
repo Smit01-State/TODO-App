@@ -23,50 +23,47 @@ class _HistoryListBuilder extends State<HistoryListBuilder> {
         return Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
-            elevation: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  width: 0.4,
-                ),
-                borderRadius: BorderRadius.circular(12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(
+                color: Theme.of(context).colorScheme.onSurface,
+                width: 0.4,
               ),
-              child: ListTile(
-                leading: IconButton(
-                  onPressed: () {
-                    context.read<TaskProvider>().HistorytoggleTask(index);
-                    if (!Htask.isCompleted) {
-                      context
-                          .read<TaskProvider>()
-                          .ShowDBTask(); // show in home page because it notify the taskList and update if any changes
-                      context.read<TaskProvider>().RemoveHistoryTask(
-                        index,
-                      ); // it just remove from HistoryList
-                    }
-                  },
-                  icon: Icon(Icons.settings_backup_restore),
+            ),
+            child: ListTile(
+              leading: IconButton(
+                onPressed: () {
+                  context.read<TaskProvider>().HistorytoggleTask(index);
+                  if (!Htask.isCompleted) {
+                    context
+                        .read<TaskProvider>()
+                        .ShowDBTask(); // show in home page because it notify the taskList and update if any changes
+                    context.read<TaskProvider>().RemoveHistoryTask(
+                      index,
+                    ); // it just remove from HistoryList
+                  }
+                },
+                icon: Icon(Icons.settings_backup_restore),
+              ),
+              title: Text(
+                Htask.title!,
+                style: TextStyle(
+                  color: Htask.isCompleted
+                      ? Colors.grey
+                      : Theme.of(context).colorScheme.onSurface,
+                  decoration: Htask.isCompleted
+                      ? TextDecoration.lineThrough
+                      : null,
                 ),
-                title: Text(
-                  Htask.title!,
-                  style: TextStyle(
-                    color: Htask.isCompleted
-                        ? Colors.grey
-                        : Theme.of(context).colorScheme.onSurface,
-                    decoration: Htask.isCompleted
-                        ? TextDecoration.lineThrough
-                        : null,
-                  ),
-                ),
-                subtitle: Text(
-                  "${DateFormat("MMMM d yyyy").format(Htask.DueDate!)}",
-                ),
-                trailing: IconButton(
-                  onPressed: () {
-                    context.read<TaskProvider>().RemoveDBTask(index);
-                  },
-                  icon: Icon(Icons.delete_forever),
-                ),
+              ),
+              subtitle: Text(
+                "${DateFormat("MMMM d yyyy").format(Htask.DueDate!)}",
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  context.read<TaskProvider>().RemoveDBTask(index);
+                },
+                icon: Icon(Icons.delete_forever),
               ),
             ),
           ),

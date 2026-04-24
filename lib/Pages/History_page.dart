@@ -35,7 +35,10 @@ class _HistoryPageState extends State<HistoryPage> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
             )
-          : HistoryListBuilder(),
+          : Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: HistoryListBuilder(),
+            ),
     );
   }
 }
