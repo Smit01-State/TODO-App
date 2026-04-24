@@ -5,6 +5,9 @@ on:
     branches:
       - main   # or your branch name
 
+permissions:
+  contents: write
+
 jobs:
 
   build:
@@ -21,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        
+
       - name: Extract version from pubspec.yaml
         id: version
         run: |
