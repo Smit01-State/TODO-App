@@ -19,10 +19,10 @@ class _HistoryPageState extends State<HistoryPage> {
     final completedTask = context.watch<TaskProvider>().HistoryTasks;
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        foregroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
         title: Text(
           widget.Title,
           style: TextStyle(fontWeight: FontWeight.w600),

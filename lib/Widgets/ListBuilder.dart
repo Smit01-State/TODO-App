@@ -28,7 +28,7 @@ class _ListbuilderState extends State<Listbuilder> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
               side: BorderSide(
-                color: Theme.of(context).colorScheme.onSurface,
+                color: Theme.of(context).colorScheme.outline,
                 width: 0.4,
               ),
             ),

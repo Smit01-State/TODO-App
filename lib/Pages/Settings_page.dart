@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/Services/FeedBack/FeedBack.dart';
 
 import '../ViewModel/ThemeMode_provider.dart';
 import '../Widgets/Ui_ColorPicker.dart';
@@ -35,10 +36,10 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        foregroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
         title: Text(
           widget.Title,
           style: TextStyle(fontWeight: FontWeight.w600),
@@ -61,7 +62,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                       side: BorderSide(
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: Theme.of(context).colorScheme.outline,
                         width: 0.4,
                       ),
                     ),
@@ -98,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                   side: BorderSide(
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: Theme.of(context).colorScheme.outline,
                     width: 0.4,
                   ),
                 ),
@@ -136,10 +137,6 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.feedback_outlined),
-                      title: Text("Feedback"),
-                    ),
-                    ListTile(
                       leading: Icon(Icons.whatshot_outlined),
                       title: Text("What's new?"),
                       onTap: () {
@@ -164,6 +161,23 @@ class _SettingsPageState extends State<SettingsPage> {
                           ),
                         );
                       },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.feedback_outlined),
+                      title: Text("FeedBack"),
+                      onTap: () {
+                        FeedBack().sendEmailTo(
+                          email: 'smitpatel11062@gmail.com',
+                          subject: 'App Feedback — $_appVersion',
+                          body:
+                              'Hi Smit,\n\nDevice: Android \n Issue/suggestion: ',
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.help_outline),
+                      title: Text("Help"),
+                      onTap: () {},
                     ),
                     ListTile(
                       leading: Icon(Icons.info_outline),

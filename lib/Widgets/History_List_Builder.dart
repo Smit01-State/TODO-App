@@ -26,7 +26,7 @@ class _HistoryListBuilder extends State<HistoryListBuilder> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
               side: BorderSide(
-                color: Theme.of(context).colorScheme.onSurface,
+                color: Theme.of(context).colorScheme.outline,
                 width: 0.4,
               ),
             ),
