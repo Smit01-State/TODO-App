@@ -1,3 +1,11 @@
+import java.util.Properties
+
+val keystorePropertiesFile = rootProject.file("key.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(keystorePropertiesFile.inputStream())
+}
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -34,10 +42,10 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("release-key.jks")
-            storePassword = "Todu123"
-            keyAlias = "release"
-            keyPassword = "Todu123"
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = keystoreProperties["storeFile"]?.let { file(it) }
+            storePassword = keystoreProperties["storePassword"] as String
         }
     }
 
@@ -47,7 +55,7 @@ android {
         }
         getByName("release") {
             resValue("string", "Todu", "Todu")
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }
