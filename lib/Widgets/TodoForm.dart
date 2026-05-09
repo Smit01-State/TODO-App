@@ -66,79 +66,81 @@ class _TodoaddState extends State<TodoAdd> {
       content: Container(
         width: 500,
         height: 500,
-        child: Column(
-          spacing: 10,
-          children: [
-            TextField(
-              textInputAction: TextInputAction.next,
-              controller: _todoTitleControler,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.title),
-                labelText: "Title",
-                border: OutlineInputBorder(),
+        child: SingleChildScrollView(
+          child: Column(
+            spacing: 10,
+            children: [
+              TextField(
+                textInputAction: TextInputAction.next,
+                controller: _todoTitleControler,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.title),
+                  labelText: "Title",
+                  border: OutlineInputBorder(),
+                ),
+              ), //title
+              TextField(
+                textInputAction: TextInputAction.next,
+                controller: _todoDetailControler,
+                maxLines: 4,
+                keyboardType: .multiline,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.line_style),
+                  labelText: "Detail",
+                  border: OutlineInputBorder(),
+                ),
+              ), //detail
+              TextField(
+                controller: _todoDateControler,
+                readOnly: true,
+                decoration: InputDecoration(
+                  labelText: "Date",
+                  prefixIcon: Icon(Icons.date_range),
+                  border: OutlineInputBorder(),
+                ),
+                onTap: () {
+                  showDatePicker(
+                    context: context,
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2100),
+                    initialDate: DateTime.now(),
+                  ).then((Date) {
+                    if (Date != null) {
+                      this.SelectedDate = Date;
+                      _todoDateControler.text =
+                          "${SelectedDate.day}/${SelectedDate.month}/${SelectedDate.year}";
+                    }
+                  });
+                },
+              ), //date
+              TextField(
+                controller: _todoTimeControler,
+                readOnly: true,
+                decoration: InputDecoration(
+                  labelText: "Time",
+                  prefixIcon: Icon(Icons.access_time),
+                  border: OutlineInputBorder(),
+                ),
+                onTap: () {
+                  showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                  ).then((time) {
+                    if (time != null) {
+                      this.SelectedTime = time;
+                      final hh = SelectedTime.hourOfPeriod.toString().padLeft(
+                        2,
+                        '0',
+                      );
+                      final mm = SelectedTime.minute.toString().padLeft(2, '0');
+                      _todoTimeControler.text =
+                          "$hh:$mm ${SelectedTime.period.name}";
+                    }
+                  });
+                },
               ),
-            ), //title
-            TextField(
-              textInputAction: TextInputAction.next,
-              controller: _todoDetailControler,
-              maxLines: 4,
-              keyboardType: .multiline,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.line_style),
-                labelText: "Detail",
-                border: OutlineInputBorder(),
-              ),
-            ), //detail
-            TextField(
-              controller: _todoDateControler,
-              readOnly: true,
-              decoration: InputDecoration(
-                labelText: "Date",
-                prefixIcon: Icon(Icons.date_range),
-                border: OutlineInputBorder(),
-              ),
-              onTap: () {
-                showDatePicker(
-                  context: context,
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime(2100),
-                  initialDate: DateTime.now(),
-                ).then((Date) {
-                  if (Date != null) {
-                    this.SelectedDate = Date;
-                    _todoDateControler.text =
-                        "${SelectedDate.day}/${SelectedDate.month}/${SelectedDate.year}";
-                  }
-                });
-              },
-            ), //date
-            TextField(
-              controller: _todoTimeControler,
-              readOnly: true,
-              decoration: InputDecoration(
-                labelText: "Time",
-                prefixIcon: Icon(Icons.access_time),
-                border: OutlineInputBorder(),
-              ),
-              onTap: () {
-                showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.now(),
-                ).then((time) {
-                  if (time != null) {
-                    this.SelectedTime = time;
-                    final hh = SelectedTime.hourOfPeriod.toString().padLeft(
-                      2,
-                      '0',
-                    );
-                    final mm = SelectedTime.minute.toString().padLeft(2, '0');
-                    _todoTimeControler.text =
-                        "$hh:$mm ${SelectedTime.period.name}";
-                  }
-                });
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       actions: [

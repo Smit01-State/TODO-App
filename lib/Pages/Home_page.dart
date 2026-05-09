@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ViewModel/Task_provider.dart';
+import '../Widgets/AppBarChips.dart';
 import '../Widgets/ListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 
@@ -28,19 +29,36 @@ class _MyHomePageState extends State<MyHomePage> {
           widget.Title,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12, top: 8),
+            child: Icon(Icons.search),
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(48),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, bottom: 4),
+            child: Row(
+              spacing: 8,
+              children: [
+                Appbarchips(Label: "Today"),
+                Appbarchips(Label: "monthly"),
+                Appbarchips(Label: "yesterday"),
+              ],
+            ),
+          ),
+        ),
       ),
 
       body: context.watch<TaskProvider>().Tasks.isEmpty
           ? Center(
               child: Text(
-                "Home Page , empty list ",
+                "Add New Task",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
             )
-          : Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Listbuilder(),
-            ),
+          : Padding(padding: const EdgeInsets.all(8.0), child: Listbuilder()),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {

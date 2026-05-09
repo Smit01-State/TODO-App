@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/Services/FeedBack/FeedBack.dart';
+import 'package:todo_list/Services/FeedBack/UpdateURL.dart';
 
 import '../ViewModel/ThemeMode_provider.dart';
 import '../Widgets/Ui_ColorPicker.dart';
@@ -45,9 +46,9 @@ class _SettingsPageState extends State<SettingsPage> {
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: .start,
             crossAxisAlignment: .start,
@@ -175,9 +176,11 @@ class _SettingsPageState extends State<SettingsPage> {
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.help_outline),
-                      title: Text("Help"),
-                      onTap: () {},
+                      leading: Icon(Icons.system_update_outlined),
+                      title: Text("New Update"),
+                      onTap: () {
+                        Updateurl().openGitHub(context);
+                      },
                     ),
                     ListTile(
                       leading: Icon(Icons.info_outline),

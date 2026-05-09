@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/Widgets/AppBarChips.dart';
 import 'package:todo_list/Widgets/History_List_Builder.dart';
 
 import '../ViewModel/Task_provider.dart';
@@ -17,6 +18,7 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     final completedTask = context.watch<TaskProvider>().HistoryTasks;
+    bool selected = false;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -27,17 +29,38 @@ class _HistoryPageState extends State<HistoryPage> {
           widget.Title,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12, top: 8),
+            child: Icon(Icons.search),
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(48),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, bottom: 4),
+            child: Row(
+              spacing: 8,
+              children: [
+                Appbarchips(Label: "Today"),
+                Appbarchips(Label: "monthly"),
+                Appbarchips(Label: "yesterday"),
+              ],
+            ),
+          ),
+        ),
       ),
       body: completedTask.isEmpty
           ? Center(
-              child: Text(
-                "History Page , empty list ",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
+              child: Image.asset("assets/Icon/box.png", height: 75, width: 75),
             )
           : Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: HistoryListBuilder(),
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: .start,
+                crossAxisAlignment: .start,
+                children: [Flexible(child: HistoryListBuilder())],
+              ),
             ),
     );
   }

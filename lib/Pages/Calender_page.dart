@@ -18,20 +18,22 @@ class SearchPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 16),
         child: Center(
-          child: Column(
-            mainAxisAlignment: .center,
-            children: [
-              SizedBox(height: 10),
-              Text(
-                "Work in Progress...",
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
-              ),
-              Lottie.asset(
-                'assets/Animation/coding.json',
-                width: 300,
-                height: 300,
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: .center,
+              children: [
+                SizedBox(height: 10),
+                Text(
+                  "Work in Progress...",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                ),
+                Lottie.asset(
+                  'assets/Animation/coding.json',
+                  width: 300,
+                  height: 300,
+                ),
+              ],
+            ),
           ),
         ),
       ),
