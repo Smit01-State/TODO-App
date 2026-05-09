@@ -52,7 +52,12 @@ class _HistoryPageState extends State<HistoryPage> {
       ),
       body: completedTask.isEmpty
           ? Center(
-              child: Image.asset("assets/Icon/box.png", height: 75, width: 75),
+              child: Image.asset(
+                "assets/Icon/box.png",
+                height: 75,
+                width: 75,
+                color: ColorScheme.of(context).onSurface,
+              ),
             )
           : Padding(
               padding: const EdgeInsets.all(8.0),
