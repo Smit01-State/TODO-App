@@ -42,9 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               spacing: 8,
               children: [
-                Appbarchips(Label: "Today"),
-                Appbarchips(Label: "monthly"),
-                Appbarchips(Label: "yesterday"),
+                FilterChips(
+                  TLabel: "Today",
+                  WLabel: "This Week",
+                  MLabel: "This Month",
+                ),
               ],
             ),
           ),
@@ -54,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: context.watch<TaskProvider>().Tasks.isEmpty
           ? Center(
               child: Text(
-                "Add New Task",
+                " No Task",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
             )

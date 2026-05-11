@@ -59,10 +59,6 @@ class TaskProvider extends ChangeNotifier {
         ? 1
         : 0; // change boolean to 0 and 1 to update DB
 
-    /*print("index :${index}"); // debugger in terminal
-    print("list length :${_tasks.length}"); // debugger in terminal
-    */
-
     Database DB = await DBinst.getDB();
     await DBinst.UpdateTask(DB, id, Cheker);
     NotiServices().cancelNotification(TaskId); // notification Cancel

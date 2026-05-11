@@ -18,7 +18,6 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     final completedTask = context.watch<TaskProvider>().HistoryTasks;
-    bool selected = false;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -42,9 +41,11 @@ class _HistoryPageState extends State<HistoryPage> {
             child: Row(
               spacing: 8,
               children: [
-                Appbarchips(Label: "Today"),
-                Appbarchips(Label: "monthly"),
-                Appbarchips(Label: "yesterday"),
+                FilterChips(
+                  TLabel: "Today",
+                  WLabel: "This Week",
+                  MLabel: "This Month",
+                ),
               ],
             ),
           ),

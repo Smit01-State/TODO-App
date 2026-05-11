@@ -28,7 +28,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   //
   late final List<Widget> _Pages = [
     MyHomePage(Title: "Todo"),
-    SearchPage(Title: "Calender"),
+    CalenderPage(Title: "Calender"),
     HistoryPage(Title: "History"),
     SettingsPage(Title: "Settings"),
   ];
