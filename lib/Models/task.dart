@@ -15,7 +15,6 @@ class Task {
     required this.title,
     this.detail = '',
     this.DueDate,
-
     this.isCompleted = false,
   });
 

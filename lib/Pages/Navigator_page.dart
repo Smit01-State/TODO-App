@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/Pages/Calender_page.dart';
 import 'package:todo_list/Pages/History_page.dart';
 import 'package:todo_list/Pages/Home_page.dart';
 import 'package:todo_list/Pages/Settings_page.dart';
 import 'package:todo_list/Services/Local/DBHelper.dart';
+import 'package:todo_list/ViewModel/Task_provider.dart';
 
 class NavigatorPage extends StatefulWidget {
   NavigatorPage({super.key});
@@ -15,7 +17,6 @@ class NavigatorPage extends StatefulWidget {
 class _NavigatorPageState extends State<NavigatorPage> {
   PageController _pageController = PageController();
   int _currentIndex = 0;
-  String? PageTitle;
 
   void onTapPage(int index) {
     _pageController.animateToPage(
@@ -26,7 +27,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
   }
 
   //
-  late final List<Widget> _Pages = [
+  final List<Widget> _Pages = [
     MyHomePage(Title: "Todo"),
     CalenderPage(Title: "Calender"),
     HistoryPage(Title: "History"),
@@ -50,6 +51,9 @@ class _NavigatorPageState extends State<NavigatorPage> {
           setState(() {
             _currentIndex = index;
           });
+          if (index != 0) {
+            context.read<TaskProvider>().ShowDBTask();
+          }
         },
       ),
 

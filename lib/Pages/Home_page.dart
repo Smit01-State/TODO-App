@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../ViewModel/Task_provider.dart';
 import '../Widgets/AppBarChips.dart';
-import '../Widgets/ListBuilder.dart';
+import '../Widgets/HomePageListBuilder.dart';
 import '../Widgets/TodoForm.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
               spacing: 8,
               children: [
                 FilterChips(
+                  PageName: "Home",
                   TLabel: "Today",
                   WLabel: "This Week",
                   MLabel: "This Month",
@@ -60,7 +61,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
             )
-          : Padding(padding: const EdgeInsets.all(8.0), child: Listbuilder()),
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: .start,
+                crossAxisAlignment: .start,
+                children: [Flexible(child: Listbuilder())],
+              ),
+            ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -53,10 +53,10 @@ class _TodoaddState extends State<TodoAdd> {
   @override
   void dispose() {
     super.dispose();
-    /*_todoDateControler.dispose();
+    _todoDateControler.dispose();
     _todoDetailControler.dispose();
     _todoTitleControler.dispose();
-    _todoTimeControler.dispose();*/
+    _todoTimeControler.dispose();
   }
 
   @override

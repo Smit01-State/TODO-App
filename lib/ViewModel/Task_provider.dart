@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:todo_list/Models/FilterModules.dart';
 import 'package:todo_list/Services/Local/DBHelper.dart';
 import 'package:todo_list/Services/Local/Noti_Services.dart';
 
@@ -26,6 +27,32 @@ class TaskProvider extends ChangeNotifier {
     Database DB = await DBinst.getDB();
     Future<List<Task>> DBTask = DBinst.select(DB, 0);
     _tasks = await DBTask;
+    notifyListeners();
+  }
+
+  Future<void> FilterTask(String ToFilter) async {
+    Database DB = await DBinst.getDB();
+    List<Task> DBFTask = await DBinst.select(DB, 0);
+
+    switch (ToFilter) {
+      case "Today":
+        _tasks = DBFTask.where(
+          (t) => Filtermodules().IsToday(t.DueDate),
+        ).toList();
+        break;
+      case "This Week":
+        _tasks = DBFTask.where(
+          (t) => Filtermodules().IsWeekly(t.DueDate),
+        ).toList();
+        break;
+      case "This Month":
+        _tasks = DBFTask.where(
+          (t) => Filtermodules().IsMonthly(t.DueDate),
+        ).toList();
+        break;
+      default:
+        _tasks = await DBFTask;
+    }
     notifyListeners();
   }
 
@@ -85,11 +112,36 @@ class TaskProvider extends ChangeNotifier {
   }
 
   /// for _Historytasks methods
-  ///
   void ShowDBHistoryTask() async {
     Database DB = await DBinst.getDB();
     Future<List<Task>> DBTask = DBinst.select(DB, 1);
     _Historytasks = await DBTask;
+    notifyListeners();
+  }
+
+  Future<void> HistoryFilterTask(String ToFilter) async {
+    Database DB = await DBinst.getDB();
+    List<Task> DBFTask = await DBinst.select(DB, 1);
+
+    switch (ToFilter) {
+      case "Today":
+        _Historytasks = DBFTask.where(
+          (t) => Filtermodules().IsToday(t.DueDate),
+        ).toList();
+        break;
+      case "This Week":
+        _Historytasks = DBFTask.where(
+          (t) => Filtermodules().IsWeekly(t.DueDate),
+        ).toList();
+        break;
+      case "This Month":
+        _Historytasks = DBFTask.where(
+          (t) => Filtermodules().IsMonthly(t.DueDate),
+        ).toList();
+        break;
+      default:
+        _Historytasks = await DBFTask;
+    }
     notifyListeners();
   }
 

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list/ViewModel/Task_provider.dart';
 
 class FilterChips extends StatefulWidget {
+  String? PageName;
   String? TLabel;
   String? WLabel;
   String? MLabel;
-  bool? selected;
 
-  FilterChips({this.TLabel, this.MLabel, this.WLabel, this.selected = false});
+  FilterChips({this.TLabel, this.MLabel, this.WLabel, required this.PageName});
 
   @override
   State<FilterChips> createState() => _FilterChipsState();
@@ -33,8 +35,22 @@ class _FilterChipsState extends State<FilterChips> {
                 Mselected = false;
               }
             });
+
+            switch (widget.PageName) {
+              case "Home":
+                Tselected
+                    ? context.read<TaskProvider>().FilterTask("Today")
+                    : context.read<TaskProvider>().ShowDBTask();
+                break;
+              case "History":
+                Tselected
+                    ? context.read<TaskProvider>().HistoryFilterTask("Today")
+                    : context.read<TaskProvider>().ShowDBHistoryTask();
+                break;
+            }
           },
         ),
+
         ChoiceChip(
           label: Text(widget.WLabel!),
           selected: Wselected,
@@ -46,6 +62,20 @@ class _FilterChipsState extends State<FilterChips> {
                 Mselected = false;
               }
             });
+            switch (widget.PageName) {
+              case "Home":
+                Wselected
+                    ? context.read<TaskProvider>().FilterTask("This Week")
+                    : context.read<TaskProvider>().ShowDBTask();
+                break;
+              case "History":
+                Wselected
+                    ? context.read<TaskProvider>().HistoryFilterTask(
+                        "This Week",
+                      )
+                    : context.read<TaskProvider>().ShowDBHistoryTask();
+                break;
+            }
           },
         ),
         ChoiceChip(
@@ -59,6 +89,20 @@ class _FilterChipsState extends State<FilterChips> {
                 Tselected = false;
               }
             });
+            switch (widget.PageName) {
+              case "Home":
+                Mselected
+                    ? context.read<TaskProvider>().FilterTask("This Month")
+                    : context.read<TaskProvider>().ShowDBTask();
+                break;
+              case "History":
+                Mselected
+                    ? context.read<TaskProvider>().HistoryFilterTask(
+                        "This Month",
+                      )
+                    : context.read<TaskProvider>().ShowDBHistoryTask();
+                break;
+            }
           },
         ),
       ],

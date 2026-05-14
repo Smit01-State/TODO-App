@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/Widgets/AppBarChips.dart';
-import 'package:todo_list/Widgets/History_List_Builder.dart';
+import 'package:todo_list/Widgets/HistoryPageListBuilder.dart';
 
 import '../ViewModel/Task_provider.dart';
 
@@ -42,6 +42,7 @@ class _HistoryPageState extends State<HistoryPage> {
               spacing: 8,
               children: [
                 FilterChips(
+                  PageName: "History",
                   TLabel: "Today",
                   WLabel: "This Week",
                   MLabel: "This Month",

@@ -1,4 +1,6 @@
+
 # Miscellaneous
+devtools_options.yaml
 *.class
 *.log
 *.pyc
