@@ -1,52 +1,52 @@
 # Todo List - Persistent Flutter Application
 
-A robust and intuitive Todo List application built with Flutter, designed to help users manage their daily tasks efficiently. The app features persistent storage, state management using Provider, and a clean, organized architecture.
+A robust and intuitive Todo List application built with Flutter, designed to help users manage their daily tasks efficiently. This app offers a seamless experience with local data persistence, customizable themes, and timely reminders.
 
-## 🚀 Features
+## 🚀 Key Features
 
-- **Task Management:**
-  - Create tasks with detailed descriptions.
-  - Set specific **Due Dates** and **Due Times** for each task.
-  - Toggle task completion status with a simple checkbox.
-  - Remove tasks when they are no longer needed.
+- **Advanced Task Management:**
+  - Create tasks with titles, detailed descriptions, and specific **Due Dates/Times**.
+  - Interactive task completion tracking.
+  - Smart **Filters** to view tasks for Today, This Week, or This Month.
+  - Built-in **Search** functionality to quickly locate any task.
+- **Notifications & Reminders:**
+  - Receive timely alerts for task deadlines.
+  - Quick-action notifications: Mark tasks as "Done" directly from the notification tray.
+- **Personalization:**
+  - **Dynamic Theme Mode:** Toggle between Light and Dark modes.
+  - **Color Picker:** Customize the app's accent color to suit your style.
 - **Persistent Storage:**
-  - Uses `sqflite` to store tasks locally on the device, ensuring your data is safe even after closing the app.
-- **State Management:**
-  - Implements the `Provider` package for efficient and reactive state handling.
-- **History Tracking:**
-  - View completed or archived tasks in a dedicated History section.
-- **Search Functionality:**
-  - Quickly find specific tasks using the built-in search feature.
-- **Modern UI:**
-  - Organized navigation with a Bottom Navigation Bar for easy access to Home, Search, History, and Settings.
+  - Powered by `sqflite` for reliable local data storage, ensuring tasks are saved permanently on your device.
+- **Fluid UI:**
+  - Enhanced with **Lottie animations** for a more engaging user experience.
+  - Organized navigation using a Bottom Navigation Bar.
 
 ## 🛠️ Tech Stack
 
 - **Framework:** [Flutter](https://flutter.dev/)
 - **State Management:** [Provider](https://pub.dev/packages/provider)
 - **Database:** [sqflite](https://pub.dev/packages/sqflite)
-- **Utility Libraries:** 
-  - `intl` (Date/Time formatting)
-  - `path` (File system paths)
+- **Notifications:** [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+- **Animations:** [Lottie](https://pub.dev/packages/lottie)
+- **Utility:** `intl`, `path_provider`, `package_info_plus`, `url_launcher`
 
 ## 📁 Project Structure
 
 ```text
 lib/
-├── Models/          # Data models (Task)
-├── ViewModel/       # Business logic and state management (TaskProvider)
-├── Services/        # Database and local storage helpers (DBHelper)
+├── Models/          # Data blueprints (Task)
+├── ViewModel/       # Business logic & State (TaskProvider, ThemeProvider)
+├── Services/        # Infrastructure (Database, Notifications, Feedback)
 ├── Pages/           # UI Screens (Home, Search, History, Settings)
-├── Widgets/         # Reusable UI components
-└── main.dart        # Application entry point
+├── Widgets/         # Reusable UI components (TodoForm, ColorPicker)
+└── main.dart        # Entry point
 ```
 
 ## 🏁 Getting Started
 
 ### Prerequisites
-
 - Flutter SDK installed.
-- An Android/iOS emulator or physical device.
+- Android/iOS emulator or physical device.
 
 ### Installation
 
@@ -54,26 +54,25 @@ lib/
     ```bash
     git clone https://github.com/your-username/todo_list.git
     ```
-2.  **Navigate to the project directory:**
-    ```bash
-    cd todo_list
-    ```
-3.  **Install dependencies:**
+2.  **Install dependencies:**
     ```bash
     flutter pub get
     ```
-4.  **Run the application:**
+3.  **Run the application:**
     ```bash
     flutter run
     ```
 
 ## 🔮 Future Plans
 
-- **Notifications & Reminders:** Implement local notifications to alert users about upcoming task deadlines.
-- **Google Data Sync:** Enable cloud synchronization using Google Drive or Firebase to access tasks across multiple devices.
-- **UI/UX Improvements:** Refine the user interface with custom themes, and smoother animations.
-- **Calendar Integration:** Add a calendar view to visualize task distribution and deadlines over weeks or months.
+- [ ] **Google Data Sync:** Synchronize tasks across devices using cloud storage.
+- [ ] **Calendar View:** A full-screen calendar for better visualization of upcoming deadlines.
+- [ ] **Enhanced Search:** More granular search filters and real-time indexing.
+- [ ] **Cloud Backup:** Integration with Firebase or Google Drive.
 
-## 🤝 Contributing
+## 🤝 Feedback & Contributions
 
-Contributions are welcome! If you have suggestions for new features or improvements, feel free to open an issue or submit a pull request.
+Contributions are always welcome! If you have suggestions, feature requests, or find bugs, please feel free to:
+- Open an **Issue**.
+- Submit a **Pull Request**.
+- Contact the developer via the Feedback section in the app settings.

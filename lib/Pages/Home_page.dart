@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
 import '../ViewModel/Task_provider.dart';
 import '../Widgets/AppBarChips.dart';
@@ -32,7 +33,19 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12, top: 8),
-            child: Icon(Icons.search),
+            child: IconButton(
+              onPressed: () {
+                toastification.show(
+                  context: context,
+                  title: Text("Soon you see it ..."),
+                  type: ToastificationType.info,
+                  style: ToastificationStyle.flatColored,
+                  alignment: Alignment.topCenter,
+                  autoCloseDuration: Duration(seconds: 2),
+                );
+              },
+              icon: Icon(Icons.search),
+            ),
           ),
         ],
         bottom: PreferredSize(

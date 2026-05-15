@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 import 'package:todo_list/Widgets/AppBarChips.dart';
 import 'package:todo_list/Widgets/HistoryPageListBuilder.dart';
 
@@ -31,7 +32,19 @@ class _HistoryPageState extends State<HistoryPage> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12, top: 8),
-            child: Icon(Icons.search),
+            child: IconButton(
+              onPressed: () {
+                toastification.show(
+                  context: context,
+                  title: Text("Tap HomePage Search Icon"),
+                  type: ToastificationType.info,
+                  style: ToastificationStyle.flatColored,
+                  alignment: Alignment.topCenter,
+                  autoCloseDuration: Duration(seconds: 3),
+                );
+              },
+              icon: Icon(Icons.search),
+            ),
           ),
         ],
         bottom: PreferredSize(
