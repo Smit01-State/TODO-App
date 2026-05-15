@@ -60,6 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Consumer(
                 builder: (context, value, child) {
                   return Card(
+                    color: Theme.of(context).colorScheme.surface,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                       side: BorderSide(
@@ -97,6 +98,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Text("About"),
               ),
               Card(
+                color: Theme.of(context).colorScheme.surface,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                   side: BorderSide(

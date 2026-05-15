@@ -23,6 +23,7 @@ class _HistoryListBuilder extends State<HistoryListBuilder> {
         return Padding(
           padding: const EdgeInsets.all(4.0),
           child: Card(
+            color: Theme.of(context).colorScheme.surface,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
               side: BorderSide(

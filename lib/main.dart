@@ -88,8 +88,14 @@ class _MyAppState extends State<MyApp> {
 
       title: 'Todu',
 
-      theme: ThemeData(colorScheme: _lightColorScheme),
-      darkTheme: ThemeData(colorScheme: _DarkColorScheme),
+      theme: ThemeData(
+        colorScheme: _lightColorScheme,
+        appBarTheme: AppBarTheme(scrolledUnderElevation: 0),
+      ),
+      darkTheme: ThemeData(
+        colorScheme: _DarkColorScheme,
+        appBarTheme: AppBarTheme(scrolledUnderElevation: 0),
+      ),
       themeMode: context.watch<ThememodeProvider>().getMode,
 
       home: NavigatorPage(),

@@ -25,6 +25,7 @@ class _ListbuilderState extends State<Listbuilder> {
         return Padding(
           padding: const EdgeInsetsGeometry.all(4.0),
           child: Card(
+            color: Theme.of(context).colorScheme.surface,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
               side: BorderSide(
