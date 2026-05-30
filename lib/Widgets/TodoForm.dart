@@ -80,7 +80,6 @@ class _TodoaddState extends State<TodoAdd> {
                 ),
               ), //title
               TextField(
-                textInputAction: TextInputAction.next,
                 controller: _todoDetailControler,
                 maxLines: 4,
                 keyboardType: .multiline,
