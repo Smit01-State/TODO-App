@@ -18,8 +18,7 @@ void main() async {
   ///Notification Initialize
 
   tz.initializeTimeZones();
-  final Noti = await NotiServices.Noti_Instance;
-  Noti.initNotification();
+  NotiServices().initNotification(); // notification initialization
 
   /// SharedPreference
   final shrf = await SharedPreferences.getInstance();
@@ -57,9 +56,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    NotiServices.Noti_Instance.requestPermission();
-    context.read<TaskProvider>().ShowDBTask();
-    context.read<TaskProvider>().ShowDBHistoryTask();
+    NotiServices().requestPermission();
+    TaskProvider();
   }
 
   @override

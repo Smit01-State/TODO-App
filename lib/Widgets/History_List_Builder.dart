@@ -16,7 +16,6 @@ class _HistoryListBuilder extends State<HistoryListBuilder> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: context.watch<TaskProvider>().HistoryTasks.length,
-
       itemBuilder: (context, index) {
         final Htask = context.watch<TaskProvider>().HistoryTasks[index];
 

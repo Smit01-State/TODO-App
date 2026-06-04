@@ -8,6 +8,8 @@ class DBHelper {
   DBHelper._(); // Private Constructor
   static DBHelper DBInstance = DBHelper._();
 
+  factory DBHelper() => DBInstance;
+
   Database? _myDB;
 
   Future<Database> getDB() async {

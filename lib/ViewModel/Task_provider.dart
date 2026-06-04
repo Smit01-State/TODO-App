@@ -8,6 +8,12 @@ import 'package:todo_list/Services/Local/Noti_Services.dart';
 import '../Models/task.dart';
 
 class TaskProvider extends ChangeNotifier {
+  /// Constructor
+  TaskProvider() {
+    ShowDBTask();
+    ShowDBHistoryTask();
+  }
+
   /// initiator
   DBHelper DBinst = DBHelper.DBInstance;
   NotiServices NotiFinast = NotiServices.Noti_Instance;

@@ -17,11 +17,12 @@ class _ListbuilderState extends State<Listbuilder> {
 
   @override
   Widget build(BuildContext context) {
+    TaskProvider TaskWatch = context.watch<TaskProvider>();
     return ListView.builder(
       controller: _controller,
-      itemCount: context.watch<TaskProvider>().Tasks.length,
+      itemCount: TaskWatch.Tasks.length,
       itemBuilder: (context, index) {
-        final task = context.watch<TaskProvider>().Tasks[index];
+        final task = TaskWatch.Tasks[index];
         return Padding(
           padding: const EdgeInsetsGeometry.all(4.0),
           child: Card(
