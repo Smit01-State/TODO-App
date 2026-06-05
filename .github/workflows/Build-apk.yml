@@ -3,19 +3,20 @@ name: Build APK
 on:
   push:
     branches:
-      - main   # or your branch name
+      - main
 
 permissions:
   contents: write
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -36,32 +37,53 @@ jobs:
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
           echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
 
+      - name: Check if version already released
+        id: check_version
+        run: |
+          TAG="v${{ steps.version.outputs.version_name }}"
+
+          git fetch --tags
+
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Version $TAG already exists. Skipping build."
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Version $TAG is new. Continuing build."
+          fi
+
       - name: Decode Keystore
+        if: steps.check_version.outputs.exists == 'false'
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/release-key.jks
 
       - name: Create key.properties
+        if: steps.check_version.outputs.exists == 'false'
         run: |
           echo "storeFile=release-key.jks" >> android/key.properties
           echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
-          
+
       - name: Build APK
+        if: steps.check_version.outputs.exists == 'false'
         run: flutter build apk --release
 
       - name: Rename APK
+        if: steps.check_version.outputs.exists == 'false'
         run: |
           mv build/app/outputs/flutter-apk/app-release.apk \
           build/app/outputs/flutter-apk/Todu-${{ steps.version.outputs.version }}.apk
 
       - name: Upload APK
+        if: steps.check_version.outputs.exists == 'false'
         uses: actions/upload-artifact@v4
         with:
           name: apk
           path: build/app/outputs/flutter-apk/*.apk
 
       - name: Create Release
+        if: steps.check_version.outputs.exists == 'false'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.version.outputs.version_name }}
@@ -69,3 +91,8 @@ jobs:
           files: build/app/outputs/flutter-apk/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Version Already Exists
+        if: steps.check_version.outputs.exists == 'true'
+        run: |
+          echo "Release for version ${{ steps.version.outputs.version_name }} already exists."

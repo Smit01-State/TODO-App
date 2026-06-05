@@ -1,34 +1,83 @@
-# Todo List - Persistent Flutter Application
+<![CDATA[# ✅ Todo List — Persistent Flutter Application
 
-A robust and intuitive Todo List application built with Flutter, designed to help users manage their daily tasks efficiently. This app offers a seamless experience with local data persistence, customizable themes, and timely reminders.
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"/>
+  <img src="https://img.shields.io/badge/Provider-6C63FF?style=for-the-badge&logoColor=white" alt="Provider"/>
+</p>
+
+<p align="center">
+  A robust and intuitive Todo List application built with <strong>Flutter</strong>, designed to help users manage daily tasks efficiently with local data persistence, customizable themes, and timely reminders.
+</p>
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><strong>Home (Empty)</strong></td>
+      <td align="center"><strong>Add New Task</strong></td>
+      <td align="center"><strong>Tasks List</strong></td>
+    </tr>
+    <tr>
+      <td><img src="Screenshot/Screenshot_20260605_090758.png" width="180" /></td>
+      <td><img src="Screenshot/Screenshot_20260605_090831.png" width="180" /></td>
+      <td><img src="Screenshot/Screenshot_20260605_091029.png" width="180" /></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Week Filter</strong></td>
+      <td align="center"><strong>Task History</strong></td>
+      <td align="center"><strong>Settings</strong></td>
+    </tr>
+    <tr>
+      <td><img src="Screenshot/Screenshot_20260605_091056.png" width="180" /></td>
+      <td><img src="Screenshot/Screenshot_20260605_091315.png" width="180" /></td>
+      <td><img src="Screenshot/Screenshot_20260605_091346.png" width="180" /></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="3"><strong>Color Picker</strong></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="3"><img src="Screenshot/Screenshot_20260605_091525.png" width="180" /></td>
+    </tr>
+  </table>
+</div>
+
+---
 
 ## 🚀 Key Features
 
-- **Advanced Task Management:**
-  - Create tasks with titles, detailed descriptions, and specific **Due Dates/Times**.
-  - Interactive task completion tracking.
-  - Smart **Filters** to view tasks for Today, This Week, or This Month.
-  - Built-in **Search** functionality to quickly locate any task.
-- **Notifications & Reminders:**
-  - Receive timely alerts for task deadlines.
-  - Quick-action notifications: Mark tasks as "Done" directly from the notification tray.
-- **Personalization:**
-  - **Dynamic Theme Mode:** Toggle between Light and Dark modes.
-  - **Color Picker:** Customize the app's accent color to suit your style.
-- **Persistent Storage:**
-  - Powered by `sqflite` for reliable local data storage, ensuring tasks are saved permanently on your device.
-- **Fluid UI:**
-  - Enhanced with **Lottie animations** for a more engaging user experience.
-  - Organized navigation using a Bottom Navigation Bar.
+| Category | Feature |
+|---|---|
+| **📋 Task Management** | Create tasks with title, description, due date & time |
+| | Interactive task completion tracking |
+| | Smart filters — *Today*, *This Week*, *This Month* |
+| | Built-in search to quickly locate any task |
+| **🔔 Notifications** | Timely alerts for task deadlines |
+| | Quick-action: mark tasks "Done" from notification tray |
+| **🎨 Personalization** | Toggle between Light & Dark modes |
+| | Custom accent color via Color Picker |
+| **💾 Persistence** | Powered by `sqflite` for reliable local storage |
+| **✨ Fluid UI** | Lottie animations for engaging experience |
+| | Bottom Navigation Bar for organized navigation |
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Framework:** [Flutter](https://flutter.dev/)
-- **State Management:** [Provider](https://pub.dev/packages/provider)
-- **Database:** [sqflite](https://pub.dev/packages/sqflite)
-- **Notifications:** [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
-- **Animations:** [Lottie](https://pub.dev/packages/lottie)
-- **Utility:** `intl`, `path_provider`, `package_info_plus`, `url_launcher`
+| Layer | Technology |
+|---|---|
+| **Framework** | [Flutter](https://flutter.dev/) |
+| **State Management** | [Provider](https://pub.dev/packages/provider) |
+| **Database** | [sqflite](https://pub.dev/packages/sqflite) |
+| **Notifications** | [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) |
+| **Animations** | [Lottie](https://pub.dev/packages/lottie) |
+| **Utilities** | `intl` · `path_provider` · `package_info_plus` · `url_launcher` |
+
+---
 
 ## 📁 Project Structure
 
@@ -42,37 +91,53 @@ lib/
 └── main.dart        # Entry point
 ```
 
+---
+
 ## 🏁 Getting Started
 
 ### Prerequisites
-- Flutter SDK installed.
-- Android/iOS emulator or physical device.
+
+- Flutter SDK installed
+- Android / iOS emulator or physical device
 
 ### Installation
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/todo_list.git
-    ```
-2.  **Install dependencies:**
-    ```bash
-    flutter pub get
-    ```
-3.  **Run the application:**
-    ```bash
-    flutter run
-    ```
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/todo_list.git
+
+# 2. Navigate to the project
+cd todo_list
+
+# 3. Install dependencies
+flutter pub get
+
+# 4. Run the application
+flutter run
+```
+
+---
 
 ## 🔮 Future Plans
 
-- [ ] **Google Data Sync:** Synchronize tasks across devices using cloud storage.
-- [ ] **Calendar View:** A full-screen calendar for better visualization of upcoming deadlines.
-- [ ] **Enhanced Search:** More granular search filters and real-time indexing.
-- [ ] **Cloud Backup:** Integration with Firebase or Google Drive.
+- [ ] **Google Data Sync** — Synchronize tasks across devices using cloud storage
+- [ ] **Calendar View** — Full-screen calendar for better deadline visualization
+- [ ] **Enhanced Search** — More granular filters and real-time indexing
+- [ ] **Cloud Backup** — Integration with Firebase or Google Drive
+
+---
 
 ## 🤝 Feedback & Contributions
 
-Contributions are always welcome! If you have suggestions, feature requests, or find bugs, please feel free to:
-- Open an **Issue**.
-- Submit a **Pull Request**.
-- Contact the developer via the Feedback section in the app settings.
+Contributions are always welcome! If you have suggestions, feature requests, or find bugs:
+
+- 🐛 Open an **Issue**
+- 🔀 Submit a **Pull Request**
+- 💬 Use the **Feedback** section in the app settings
+
+---
+
+<p align="center">
+  Made with ❤️ using Flutter
+</p>
+]]>
