@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../ViewModel/Task_provider.dart';
+import 'TaskDetailView.dart';
 
 class HistoryListBuilder extends StatefulWidget {
   const HistoryListBuilder({super.key});
@@ -65,6 +66,12 @@ class _HistoryListBuilder extends State<HistoryListBuilder> {
                 },
                 icon: Icon(Icons.delete_forever),
               ),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (_) => TaskDetailView(task: Htask),
+                );
+              },
             ),
           ),
         );
