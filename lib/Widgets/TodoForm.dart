@@ -70,6 +70,7 @@ class _TodoaddState extends State<TodoAdd> {
         child: SingleChildScrollView(
           child: Form(
             key: _TODOKey,
+            autovalidateMode: .onUserInteraction,
             child: Column(
               spacing: 10,
               children: [
