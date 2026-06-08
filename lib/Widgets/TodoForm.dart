@@ -106,7 +106,7 @@ class _TodoaddState extends State<TodoAdd> {
                       context: context,
                       firstDate: DateTime.now(),
                       lastDate: DateTime(2100),
-                      initialDate: SelectedDate ?? DateTime.now(),
+                      initialDate: DateTime.now(),
                     ).then((Date) {
                       if (Date != null) {
                         setState(() => SelectedDate = Date);
