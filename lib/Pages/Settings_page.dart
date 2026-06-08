@@ -124,8 +124,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   crossAxisAlignment: .start,
                                   children: [
                                     Text("1.google sync"),
-                                    Text("2.Calendar"),
-                                    Text("3.Search Bar"),
+                                    Text("2.Search Bar"),
                                   ],
                                 ),
                               ),
@@ -149,11 +148,10 @@ class _SettingsPageState extends State<SettingsPage> {
                                 child: Column(
                                   crossAxisAlignment: .start,
                                   children: [
-                                    Text("1.notification & reminder "),
-                                    Text("2.Rescheduling "),
-                                    Text("3.Setting page improve "),
+                                    Text("1.Rescheduling "),
+                                    Text("2. Calendar "),
                                     Text(
-                                      "4. Filters(Today, This Week, This Month)",
+                                      "3. Filters(Today, This Week, This Month)",
                                     ),
                                   ],
                                 ),
